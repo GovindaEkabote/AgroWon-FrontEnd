@@ -7,22 +7,42 @@
 
 @import url('https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css');
+@import url('https://code.jquery.com/jquery-3.2.1.slim.min.js');
 
 body {
   font-family: "Outfit", serif;
   font-size: 14px;
+  color: rgba(0, 0, 0, 0.8);
 }
 
-@media (min-width:1300px){
-  .container, .container-lg, .container-md, .container-sm, .container-xl{
+@media (min-width:1300px) {
+
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl {
     max-width: 1200px;
   }
 }
 
-::-webkit-scrollbar{
+.cursor {
+  cursor: pointer;
+}
+
+.text-light {
+  color: #5c5858 !important;
+}
+
+.text-sm {
+  font-size: 14px;
+}
+
+::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
+
 /* ::-webkit-scrollbar-thumb{
   background: #ccc !important;
 }
@@ -75,11 +95,11 @@ body {
   opacity: 0.8;
 }
 
-.headerWrapper{
+.headerWrapper {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
- .headerSearch {
+.headerSearch {
   width: 60%;
   height: 60px;
   background: #f3f4f7;
@@ -89,7 +109,7 @@ body {
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
- .headerSearch input {
+.headerSearch input {
   background: transparent !important;
   outline: none !important;
   font-size: 18px;
@@ -99,12 +119,12 @@ body {
   padding: 4px 20px !important;
 }
 
- .headerSearch input::-webkit-input-placeholder {
+.headerSearch input::-webkit-input-placeholder {
   color: rgba(0, 0, 0, 0.6);
   font-size: 15px;
 }
 
- .headerSearch button {
+.headerSearch button {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -118,11 +138,12 @@ body {
 }
 
 
-.headerSearch button svg{
+.headerSearch button svg {
   font-size: 25px;
   opacity: 0.8;
 }
- .headerSearch button {
+
+.headerSearch button {
   font-size: 20px;
 
 }
@@ -168,24 +189,25 @@ header .part3 .circle svg {
   color: #fff;
 }
 
-.locationModel .MuiPaper-elevation{
+.locationModel .MuiPaper-elevation {
   padding: 25px;
   position: relative;
 }
 
-.locationModel .stateList{
-  margin-bottom: 0px; 
+.locationModel .stateList {
+  margin-bottom: 0px;
   max-height: 400px;
   overflow-y: scroll;
   overflow-x: hidden;
 }
 
-.locationModel .stateList li{
+.locationModel .stateList li {
   width: 100%;
-  list-style: none; 
-  
+  list-style: none;
+
 }
-.locationModel .stateList button{
+
+.locationModel .stateList button {
   width: 100%;
   text-transform: capitalize !important;
   color: #000;
@@ -194,40 +216,41 @@ header .part3 .circle svg {
   margin-top: 10px;
 }
 
-.locationModel .stateList button.active{
+.locationModel .stateList button.active {
   background: rgb(187, 246, 197);
 }
 
-.locationModel .close_{
- position: absolute;
- top: 10px;
- right: 10px;
- color: #000;
- min-width: 40px;
- width: 40px;
- height: 40px;
- border-radius: 50%;
- background-color: rgb(96, 223, 117);
+.locationModel .close_ {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #000;
+  min-width: 40px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgb(96, 223, 117);
 }
 
-.locationModel .close_ svg{
+.locationModel .close_ svg {
   font-size: 22px;
 }
 
-nav .navPart1{
+nav .navPart1 {
   max-width: 20%;
   flex: 0 0 20%;
 }
-nav .navPart2{
+
+nav .navPart2 {
   min-width: 80%;
   flex: 0 0 80%;
 }
 
-nav .navPart1 .catWrapper{
+nav .navPart1 .catWrapper {
   position: relative;
 }
 
-nav .navPart1 .catWrapper .sidebarNav{
+nav .navPart1 .catWrapper .sidebarNav {
   width: 100%;
   height: 0px;
   opacity: 0;
@@ -241,34 +264,40 @@ nav .navPart1 .catWrapper .sidebarNav{
   visibility: hidden;
   z-index: 100;
 }
-nav .navPart1 .catWrapper .sidebarNav.open{
-  height:auto;
+
+nav .navPart1 .catWrapper .sidebarNav.open {
+  height: auto;
   opacity: 1;
   visibility: inherit;
 }
 
-nav .navPart1 .catWrapper .sidebarNav ul li{
+nav .navPart1 .catWrapper .sidebarNav ul li {
   padding: 0px 10px;
-   width: 100%;
-   list-style: none;
+  width: 100%;
+  list-style: none;
 }
-nav .navPart1 .catWrapper .sidebarNav ul li button{
+
+nav .navPart1 .catWrapper .sidebarNav ul li button {
   color: #000;
   width: 100%;
   justify-content: flex-start !important;
   text-transform: uppercase;
 }
-nav .navPart1 .catWrapper .sidebarNav ul li button:hover{
+
+nav .navPart1 .catWrapper .sidebarNav ul li button:hover {
   background: transparent;
 }
-nav .navPart1 .catWrapper .sidebarNav ul li button svg{
+
+nav .navPart1 .catWrapper .sidebarNav ul li button svg {
   font-size: 12px;
   opacity: 0.6;
 }
-nav .navPart1 .catWrapper .sidebarNav ul li{
+
+nav .navPart1 .catWrapper .sidebarNav ul li {
   position: static;
 }
-nav .navPart1 .catWrapper .sidebarNav ul li .submenu{
+
+nav .navPart1 .catWrapper .sidebarNav ul li .submenu {
   position: absolute;
   top: 0.5px;
   left: 101%;
@@ -282,20 +311,24 @@ nav .navPart1 .catWrapper .sidebarNav ul li .submenu{
   border-left: 1px solid rgba(0, 0, 0, 0.1);
   padding: 0px;
 }
-nav .navPart1 .catWrapper .sidebarNav ul li:hover .submenu{
+
+nav .navPart1 .catWrapper .sidebarNav ul li:hover .submenu {
   opacity: 1;
   visibility: inherit;
-  left: 101% ;
+  left: 101%;
   height: auto;
   width: 300px;
-    
+
 }
-nav .navPart1 .catWrapper .sidebarNav ul li:hover .submenu{
+
+nav .navPart1 .catWrapper .sidebarNav ul li:hover .submenu {
   border-radius: 0px;
 }
-nav .navPart1 .catWrapper .sidebarNav ul li:hover .submenu button:hover{
+
+nav .navPart1 .catWrapper .sidebarNav ul li:hover .submenu button:hover {
   background: rgb(229, 242, 231) !important;
 }
+
 nav .allCatTab {
   background: rgb(96, 223, 117);
   padding: 8px 15px !important;
@@ -311,29 +344,32 @@ nav .allCatTab :hover {
 
 }
 
-nav .allCatTab .text{
+nav .allCatTab .text {
   font-weight: 600;
 
 }
-nav .allCatTab .icon1 svg{
+
+nav .allCatTab .icon1 svg {
   font-size: 20px !important;
 }
 
-nav .allCatTab .icon2 svg{
+nav .allCatTab .icon2 svg {
   font-size: 15px !important;
 }
 
-nav .navPart2 ul{
+nav .navPart2 ul {
   margin-bottom: 0px;
 }
 
-nav .navPart2 ul li{
+nav .navPart2 ul li {
   padding-bottom: 20px;
 }
-nav .navPart2 ul li a{
+
+nav .navPart2 ul li a {
   text-decoration: none;
 }
-nav .navPart2 ul li a button{
+
+nav .navPart2 ul li a button {
   font-size: 14px !important;
   font-weight: 500;
   text-decoration: none;
@@ -347,15 +383,16 @@ nav .navPart2 ul li a button{
 
 }
 
-nav .navPart2 ul li a button:hover{
+nav .navPart2 ul li a button:hover {
   background: #e6f9e1;
   background-color: rgb(201, 244, 208);
 }
 
-nav .navPart2 ul li{
+nav .navPart2 ul li {
   position: relative;
 }
-nav .navPart2 ul li .submenu{
+
+nav .navPart2 ul li .submenu {
   position: absolute;
   top: 150%;
   left: 0%;
@@ -367,12 +404,12 @@ nav .navPart2 ul li .submenu{
   z-index: 100;
 }
 
-nav .navPart2 ul li .submenu a{
+nav .navPart2 ul li .submenu a {
   display: block;
   width: 100%;
 }
 
-nav .navPart2 ul li .submenu a button{
+nav .navPart2 ul li .submenu a button {
   width: 100%;
   justify-content: flex-start !important;
   border-radius: 0px !important;
@@ -380,24 +417,26 @@ nav .navPart2 ul li .submenu a button{
   font-weight: 600 !important;
 }
 
-nav .navPart2 ul li .submenu a button:hover{
+nav .navPart2 ul li .submenu a button:hover {
   background: rgb(229, 242, 231) !important;
 }
 
-nav .navPart2 ul li:hover .submenu{
+nav .navPart2 ul li:hover .submenu {
   opacity: 1;
   visibility: inherit;
   top: 100%;
 }
 
-.homeBannerSection{
+.homeBannerSection {
   position: relative;
   overflow: hidden;
 }
-.homeBannerSection *{
+
+.homeBannerSection * {
   outline: none;
 }
-.homeBannerSection .slick-arrow{
+
+.homeBannerSection .slick-arrow {
   position: absolute;
   top: 45%;
   z-index: 100;
@@ -410,9 +449,145 @@ nav .navPart2 ul li:hover .submenu{
   border-radius: 100%;
 }
 
-.homeBannerSection .slick-arrow.slick-next{
+.homeBannerSection .slick-arrow.slick-next {
   right: 25px;
 }
-.homeBannerSection .slick-arrow.slick-prev{
+
+.homeBannerSection .slick-arrow.slick-prev {
   left: 25px !important;
+}
+
+.homeProducts {
+  padding: 25px 0px;
+  width: 100%;
+}
+
+.homeProducts .banner {
+  width: 100%;
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.productRow .hd {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.viewAllBtn {
+  padding: 5px 25px !important;
+  background: #fff !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  border-radius: 30px !important;
+  color: #353333 !important;
+  font-weight: 600 !important;
+}
+
+.viewAllBtn svg {
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+.productItem {
+  width: 100%;
+  height: auto;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  position: relative;
+}
+
+.productItem .badge {
+  display: inline-block;
+  padding: 7px 10px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 100;
+}
+
+.badge-primary {
+  background: #2bbef9 !important;
+}
+
+.productItem .info {
+  padding: 15px;
+}
+
+.productItem h4 {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.productItem .info .oldPrice {
+  font-size: 16px;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.2);
+  text-decoration: line-through;
+}
+
+.productItem .info .netPrice {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.productItem .actions{
+  position: absolute;
+  top: 20px;
+  right: -100%;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: all 0.5s ease-in-out;
+}
+.productItem .imgWrapper{
+  overflow: hidden;
+}
+.productItem .imgWrapper img{
+  transition: all 0.3s ease-in-out;
+}
+.productItem .imgWrapper:hover img{
+  transform: scale(1.1);
+}
+.productItem .imgWrapper:hover .actions{
+  opacity: 1;
+  right: 10px;
+}
+
+.productItem .actions button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px !important;
+  height: 40px !important;
+  width: 40px !important;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%) !important;
+  transition: all 0.0s !important;
+}
+
+.productItem .actions button svg{
+  color: #000 !important;
+  opacity: 0.8;
+  pointer-events: none;
+  font-size: 15px;
+}
+.productItem .actions button:hover{
+  background: #233a95 !important;
+}
+.productItem .actions button svg{
+  color: #fff;
+}
+
+.product_row .item {
+  border-right: 1px solid transparent !important;
+}
+
+.product_row .swiper-slide:last-child .productItem {
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+.swiper {
+  padding-right: 1px !important;
 }

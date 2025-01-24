@@ -73,9 +73,8 @@ const Navigation = () => {
                       <div className="submenu shadow">
                 <Link top="/"><Button>Red Meat</Button></Link>
                 <Link top="/"><Button>White Meat</Button></Link>
-                <Link top="/"><Button>Potassium-Based Fertilizers</Button></Link>
-                <Link top="/"><Button>Compound or Mixed Fertilizers</Button></Link>
-                <Link top="/"><Button>Specialized Fertilizers</Button></Link>
+                <Link top="/"><Button>Eggs</Button></Link>
+                <Link top="/"><Button>Sea Food</Button></Link>
                 </div>
                       </li>
                   </ul>
@@ -159,9 +158,8 @@ const Navigation = () => {
                 <div className="submenu shadow">
                 <Link top="/"><Button>Red Meat</Button></Link>
                 <Link top="/"><Button>White Meat</Button></Link>
-                <Link top="/"><Button>Potassium-Based Fertilizers</Button></Link>
-                <Link top="/"><Button>Compound or Mixed Fertilizers</Button></Link>
-                <Link top="/"><Button>Specialized Fertilizers</Button></Link>
+                <Link top="/"><Button>Eggs</Button></Link>
+                <Link top="/"><Button>Sea Food</Button></Link>
                 </div>
               </li>
             </ul>
