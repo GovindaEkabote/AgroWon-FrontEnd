@@ -531,7 +531,7 @@ nav .navPart2 ul li:hover .submenu {
   font-weight: bold;
 }
 
-.productItem .actions{
+.productItem .actions {
   position: absolute;
   top: 20px;
   right: -100%;
@@ -541,16 +541,20 @@ nav .navPart2 ul li:hover .submenu {
   gap: 10px;
   transition: all 0.5s ease-in-out;
 }
-.productItem .imgWrapper{
+
+.productItem .imgWrapper {
   overflow: hidden;
 }
-.productItem .imgWrapper img{
+
+.productItem .imgWrapper img {
   transition: all 0.3s ease-in-out;
 }
-.productItem .imgWrapper:hover img{
+
+.productItem .imgWrapper:hover img {
   transform: scale(1.1);
 }
-.productItem .imgWrapper:hover .actions{
+
+.productItem .imgWrapper:hover .actions {
   opacity: 1;
   right: 10px;
 }
@@ -569,16 +573,18 @@ nav .navPart2 ul li:hover .submenu {
   transition: all 0.0s !important;
 }
 
-.productItem .actions button svg{
+.productItem .actions button svg {
   color: #000 !important;
   opacity: 0.8;
   pointer-events: none;
   font-size: 15px;
 }
-.productItem .actions button:hover{
+
+.productItem .actions button:hover {
   background: #233a95 !important;
 }
-.productItem .actions button svg{
+
+.productItem .actions button svg {
   color: #fff;
 }
 
@@ -594,35 +600,39 @@ nav .navPart2 ul li:hover .submenu {
   padding-right: 1px !important;
 }
 
-.homeCat{
+.homeCat {
   padding: 35px 0px;
 }
-.homeCat .swiper{
+
+.homeCat .swiper {
   overflow: inherit !important;
 }
-.homeCat .swiper .item{
+
+.homeCat .swiper .item {
   padding: 15px;
   width: 100%;
   height: auto;
   border-radius: 10px;
 }
 
-.homeCat .swiper .item img{
+.homeCat .swiper .item img {
   width: 80%;
 }
 
-.homeCat .swiper-button-prev, .homeCat .swiper-button-next{
+.homeCat .swiper-button-prev,
+.homeCat .swiper-button-next {
   top: -30px !important;
   width: 30px !important;
   height: 30px !important;
 }
 
-.homeCat .swiper-button-prev{
+.homeCat .swiper-button-prev {
   right: 68px !important;
   left: inherit !important;
 }
 
-.homeCat .swiper-button-prev::after, .homeCat .swiper-button-next::after{
+.homeCat .swiper-button-prev::after,
+.homeCat .swiper-button-next::after {
   font-size: 15px !important;
   border: 1px solid #918e8e;
   padding: 5px;
@@ -630,51 +640,56 @@ nav .navPart2 ul li:hover .submenu {
   background: #fff !important;
 }
 
-.productRow2{
+.productRow2 {
   flex-wrap: wrap;
   gap: 10px;
 }
+
 .productRow2 .productItem {
- width: 24%; 
- overflow: hidden;
- border-right: 1px solid rgba(0, 0, 0, 0.1) !important;
+  width: 24%;
+  overflow: hidden;
+  border-right: 1px solid rgba(0, 0, 0, 0.1) !important;
 }
 
-.bannerSec{
+.bannerSec {
   gap: 15px;
   opacity: 0.8;
- 
+
 }
-  
-.sticky{
+
+.sticky {
   position: sticky;
   top: 10px;
   z-index: 100;
 }
 
-.newsLetterSection{
+.newsLetterSection {
   width: 100%;
   height: 400px;
   background: #233a95;
   padding: 0px 0px;
 }
+
 /* .newsLetterSection .col-md-6{
   position: static !important;
 } */
-.newsLetterSection p{
+.newsLetterSection p {
   font-size: 18px;
   margin: 10px 0px !important;
 }
-.newsLetterSection h3{
+
+.newsLetterSection h3 {
   font-size: 35px;
   font-weight: bold;
 }
-.newsLetterSection p.text-light{
+
+.newsLetterSection p.text-light {
   color: #fff !important;
-  opacity: 0.5; 
+  opacity: 0.5;
   font-size: 15px;
 }
-.newsLetterSection img{
+
+.newsLetterSection img {
   position: absolute;
   bottom: 0px;
   right: 0px;
@@ -684,33 +699,35 @@ nav .navPart2 ul li:hover .submenu {
   box-shadow: 20px 20px 10px lightblue;
 }
 
-.newsLetterSection form{
- width: 100%;
- height: 65px;
- background: #fff;
- padding: 10px;
- position: relative;
- border-radius: 15px;
+.newsLetterSection form {
+  width: 100%;
+  height: 65px;
+  background: #fff;
+  padding: 10px;
+  position: relative;
+  border-radius: 15px;
 }
-.newsLetterSection form svg{
+
+.newsLetterSection form svg {
   position: absolute;
   top: 17px;
   left: 10px;
   font-size: 30px;
   opacity: 0.8;
-} 
+}
 
-.newsLetterSection form input{
+.newsLetterSection form input {
   width: 100%;
   height: 100%;
   background: #fff;
   outline: none !important;
   border: 0px !important;
-  padding-left:40px;
+  padding-left: 40px;
   padding-right: 200px;
 
 }
-.newsLetterSection form  button{
+
+.newsLetterSection form button {
   position: absolute;
   top: 8px;
   right: 8px;
@@ -722,3 +739,72 @@ nav .navPart2 ul li:hover .submenu {
   text-transform: capitalize;
   font-weight: 600;
 }
+
+footer {
+  width: 100%;
+  height: 500px;
+  margin: auto;
+  background: #fff;
+  padding: 55px 0px;
+}
+
+footer .topInfo .col {
+  padding: 15px 15px;
+  padding-left: 40px;
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+footer .topInfo .col svg {
+  font-size: 26px;
+}
+
+footer .topInfo {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding-bottom: 20px;
+  border-radius: 20px;
+  box-shadow: 1px 2.5px 2px lightblue;
+}
+
+footer .topInfo .col:last-child {
+  border-right: 0px;
+}
+
+footer .topInfo .col span {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+footer .linksWrap h5 {
+  font-size: 16px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+footer .linksWrap ul li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+footer .linksWrap ul li a {
+  color: #71778e;
+  font-size: 13px;
+  
+}
+
+footer .linksWrap ul li a:hover {
+  text-decoration: none;
+}
+
+footer .copywrite{
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px !important;
+}
+footer .copywrite ul li a{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+}
+
+

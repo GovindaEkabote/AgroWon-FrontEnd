@@ -9,15 +9,12 @@ import { Button } from "@mui/material";
 import { FaAngleRight } from "react-icons/fa6";
 import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules";
-import Rating from "@mui/material/Rating";
-import { AiOutlineFullscreen } from "react-icons/ai";
 import ProductItem from "../../Components/ProductItem";
 import HomeCat from "../../Components/HomeCat";
 import smallBanner2 from "../../assets/SmallBanner2.png";
 import smallBanner1 from "../../assets/SmallBanner1.png";
-import coupan from '../../assets/coupan.png'
+import coupan from "../../assets/coupan.png";
 import { CiMail } from "react-icons/ci";
-
 
 const Home = () => {
   const [value, setValue] = React.useState(5);
@@ -30,14 +27,14 @@ const Home = () => {
         <div className="container">
           <div className="row">
             <div className="col-md-3">
-             <div className="sticky">
-             <div className="banner">
-                <img src={Add} alt="product" className="cursor w-96" />
+              <div className="sticky">
+                <div className="banner">
+                  <img src={Add} alt="product" className="cursor w-96" />
+                </div>
+                <div className="banner">
+                  <img src={Add2} alt="product" className="cursor w-96 mt-4" />
+                </div>
               </div>
-              <div className="banner">
-                <img src={Add2} alt="product" className="cursor w-96 mt-4" />
-              </div>
-             </div>
             </div>
 
             <div className="col-md-9 productRow">
@@ -136,26 +133,31 @@ const Home = () => {
       </section>
 
       <section className="newsLetterSection mt-3 mb-3 d-flex align-item-center font-bold">
-                  <div className="container">
-                    <div className="row">
-                      <div className="col-md-6 mt-5">
-                        <p className="text-white mb-1">$20 Discount for your first Order</p>
-                        <h3 className="text-white">Join our newsletter and get..</h3>
-                        <p className="text-light">Join our email subscription now to  get updates on <br/> promotions and coupons.</p>
+        <div className="container">
+          <div className="row">
+            <div className="col-md-6 mt-5">
+              <p className="text-white mb-1">
+                $20 Discount for your first Order
+              </p>
+              <h3 className="text-white">Join our newsletter and get..</h3>
+              <p className="text-light">
+                Join our email subscription now to get updates on <br />{" "}
+                promotions and coupons.
+              </p>
 
-                        <form>
-                          <CiMail/>
-                          <input type="text" placeholder="Enter Your Email.." />
-                          <Button>Subscribe</Button>
-                        </form>
-
-                      </div>
-                      <div className="col-md-6">
-                        <img src={coupan} alt="coupan" />
-                      </div>
-                    </div>
-                  </div>
+              <form>
+                <CiMail />
+                <input type="text" placeholder="Enter Your Email.." />
+                <Button>Subscribe</Button>
+              </form>
+            </div>
+            <div className="col-md-6">
+              <img src={coupan} alt="coupan" />
+            </div>
+          </div>
+        </div>
       </section>
+
     </>
   );
 };
