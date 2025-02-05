@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button } from "@mui/material";
 import Rating from "@mui/material/Rating";
 import { AiOutlineFullscreen } from "react-icons/ai";
 import { CiHeart } from "react-icons/ci";
+import { MyContext } from "../../App";
 
-function ProductItem() {
-const [value, setValue] = React.useState(5);
+function ProductItem(props) {
+  
+  const context = useContext(MyContext);
 
+  const viewProductDetails = (id) => {
+    context.setisOpenProductModal(true)
+  }
+  
   return (
-    <div className="item productItem">
+    <>
+      <div className={`productItem ${props.itemView}`}>
       <div className="imgWrapper">
         <img
           src="https://m.media-amazon.com/images/I/81+zE0CPfRL._SX679_.jpg"
@@ -17,7 +24,7 @@ const [value, setValue] = React.useState(5);
         />
         <span className="badge badge-primary">20%</span>
         <div className="actions">
-          <Button>
+          <Button onClick={() => viewProductDetails(1)}>
             <AiOutlineFullscreen />
           </Button>
           <Button>
@@ -29,9 +36,9 @@ const [value, setValue] = React.useState(5);
         <h4>SJ Organics Vermicompost For Plants</h4>
         <span className="text-success d-block">In Stock</span>
         <Rating
-          className="mt-2"
+          className="mt-2 mb-2"
           name="read-only"
-          value={value}
+          value={5}
           readOnly
           size="small"
           precision={0.5}
@@ -42,6 +49,10 @@ const [value, setValue] = React.useState(5);
         </div>
       </div>
     </div>
+
+   
+      {/* <ProductModal /> */}
+    </>
   );
 }
 

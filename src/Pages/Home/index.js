@@ -113,17 +113,17 @@ const Home = () => {
               {/* Small Banner Here.. */}
               <div className="d-flex mt-4 mb-5 bannerSec">
                 <div className="banner">
-                  <img
+                  <img 
                     src={smallBanner1}
                     alt="product"
-                    className="cursor w-96 mt-4 rounded-xl"
+                    className="w-[100%] cursor mt-4 rounded-xl"
                   />
                 </div>
                 <div className="banner">
                   <img
                     src={smallBanner2}
                     alt="product"
-                    className="cursor w-96 mt-4 rounded-xl"
+                    className="cursor w-[100%] mt-4 rounded-xl"
                   />
                 </div>
               </div>

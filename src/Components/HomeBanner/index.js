@@ -11,14 +11,14 @@ const HomeBanner = () => {
     var settings = {
         dots: false,
         infinite: true,
-        speed: 200,
+        speed: 1500,
         slidesToShow: 1,
         slidesToScroll: 1,
         arrows:true,
         autoplay:true,
       };
   return (
-  <div className="homeBannerSection">
+  <div className="homeBannerSection rounded-xl">
     <Slider {...settings}>
         <div className="item">
             <img src={BannerImages} alt="Banner" className="w-100 h-[440px]" />
