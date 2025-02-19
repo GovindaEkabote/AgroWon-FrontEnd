@@ -1,52 +1,24 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext } from "react";
 import Dialog from "@mui/material/Dialog";
 import Button from "@mui/material/Button";
 import { IoMdClose } from "react-icons/io";
 import Rating from "@mui/material/Rating";
-import Slider from "react-slick";
-import BannerImages1 from "../../assets/productModal1_.jpg";
-import BannerImages2 from "../../assets/productModal2.jpg";
-import BannerImages3 from "../../assets/productModal3.jpg";
-import InnerImageZoom from "react-inner-image-zoom";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.css";
 import QuantityBox from "../QuantityBox";
 import { FaRegHeart } from "react-icons/fa";
 import { FaCodeCompare } from "react-icons/fa6";
 import { MyContext } from "../../App";
+import ProductZoom from "../ProductZoom";
 
 
 
 
 const ProductModal = (props) => {
-  const zoomSliderBig = useRef();
-  const zoomSlider = useRef();
+ 
 
   const context = useContext(MyContext)
 
-  var settings2 = {
-    dots: true,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    fade:false,
-    arrows:true,
-  };
- var settings = {
-    dots: false,
-    infinite: false,
-    speed: 700,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: false,
-    fade: false,
-  };
   
-
-  const goto = (index) =>{
-    zoomSlider.current.slickGoTo(index)
-    zoomSliderBig.current.slickGoTo(index);
-  }
 
   return (
     <Dialog
@@ -78,90 +50,7 @@ const ProductModal = (props) => {
 
       <div className="row mt-2 productDetailsModal">
         <div className="col-md-5">
-          <div className="productZoom position-relative">
-        <div className="badge badge-primary">20%</div>
-            <Slider {...settings} className="zoomSliderBig" ref={zoomSliderBig}>
-             
-            <div className="item">
-                <InnerImageZoom
-                  zoomType="hover"
-                  zoomScale={1}
-                  src={BannerImages1}
-                  alt="Product Image"
-                />
-              </div> <div className="item">
-                <InnerImageZoom
-                  zoomType="hover"
-                  zoomScale={1}
-                  src={BannerImages2}
-                  alt="Product Image"
-                />
-              </div> <div className="item">
-                <InnerImageZoom
-                  zoomType="hover"
-                  zoomScale={1}
-                  src={BannerImages3}
-                  alt="Product Image"
-                />
-              </div> 
-            </Slider>
-          </div>
-          <Slider {...settings2} className="zoomSlider" ref={zoomSlider}>
-            <div className="item">
-              <img 
-                src={BannerImages1}
-                alt="Banner"
-                className="w-100"
-                onClick={()=> goto(0)}
-              />
-            </div>
-            <div className="item">
-              <img 
-                src={BannerImages2}
-                alt="Banner"
-                className="w-100"
-                onClick={()=> goto(1)}
-
-              />
-            </div>
-            <div className="item">
-              <img 
-                src={BannerImages3}
-                alt="Banner"
-                className="w-100"
-                onClick={()=> goto(2)}
-
-              />
-            </div>
-            <div className="item">
-              <img 
-                src={BannerImages3}
-                alt="Banner"
-                className="w-100"
-                onClick={()=> goto(3)}
-
-              />
-            </div>
-            <div className="item">
-              <img 
-                src={BannerImages3}
-                alt="Banner"
-                className="w-100"
-                onClick={()=> goto(4)}
-
-              />
-            </div>
-            <div className="item">
-              <img 
-                src={BannerImages3}
-                alt="Banner"
-                className="w-100"
-                onClick={()=> goto(5)}
-
-              />
-            </div>
-            
-          </Slider>
+          <ProductZoom />
         </div>
         <div className="col-md-7">
           <div className="d-flex info align-item-center mb-3  ">

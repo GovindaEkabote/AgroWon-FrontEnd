@@ -10,11 +10,11 @@ import { MyContext } from "../../App";
 import { useContext } from "react";
 
 const Header = () => {
-  const context = useContext(MyContext)
+  const context = useContext(MyContext);
   return (
     <>
       <div className="px-0 py-[4px] headerWrapper ">
-      <div className="bg-lime-600 h-10 w-full p-2 hidden sm:hidden md:block">
+        <div className="bg-lime-600 h-10 w-full p-2 hidden sm:hidden md:block">
           <div>
             <p className="mt-0 mb-0 text-center text-white text-md sm:text-xs md:text-sm font-medium">
               Shop online for Agriculture Products and get your order delivered
@@ -32,17 +32,23 @@ const Header = () => {
                 </Link>
               </div>
               <div className="col-sm-10  d-flex align-item-center part2">
-              {
-                context.stateList.length !== 0 &&  <CountryDropDown />
-              }
+                {context.stateList.length !== 0 && <CountryDropDown />}
                 {/* Country DropDown */}
-               
+
                 {/* Search Bar */}
                 <SearchBox />
                 <div className="part3 d-flex align-item-center pt-2 ml-auto">
-                  <Button className="circle mr-3">
-                    <FaRegUser />
-                  </Button>
+                  {context.isLogin !== true ? (
+                    <Link to="/signIn">
+                      <Button className="btn-blue bg-blue btn-lg mr-3 btn-round">
+                        Sign In
+                      </Button>
+                    </Link>
+                  ) : (
+                    <Button className="circle mr-3">
+                      <FaRegUser />
+                    </Button>
+                  )}
                   <div className="ml-auto cartTab d-flex align-item-center">
                     <span className="price mt-2">₹ 3.25</span>
                     <div className="position-relative ml-2">
@@ -59,7 +65,7 @@ const Header = () => {
             </div>
           </div>
         </header>
-        <Navigation/>
+        <Navigation />
       </div>
     </>
   );

@@ -34,7 +34,7 @@ const Listing = () => {
               <img
                 src={BannerImg}
                 alt="banner"
-                className="w-100"
+                className="w-100 h-[250px]:"
                 style={{ borderRadius: "18px" }}
               />
 

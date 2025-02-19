@@ -21,7 +21,6 @@ const Home = () => {
   return (
     <>
       <HomeBanner />
-
       <HomeCat />
       <section className="homeProducts">
         <div className="container">

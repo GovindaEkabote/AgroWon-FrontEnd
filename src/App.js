@@ -8,13 +8,19 @@ import axios from "axios";
 import Footer from "./Components/Footer";
 import ProductModal from "./Components/productModal";
 import Listing from "./Pages/Listing";
+import ProductDetails from "./Pages/ProductDetails";
+import Cart from "./Pages/Cart";
+import SignIn from "./Pages/signIn";
+import SignUp from "./Pages/signUp";
 
 const MyContext = createContext();
 
 function App() {
   const [stateList, setStateList] = useState([]);
   const [selectedState, setSelectedState] = useState("");
-  const [isOpenProductModal,setisOpenProductModal] = useState(false)
+  const [isOpenProductModal, setisOpenProductModal] = useState(false);
+  const [isHeaderFooterShow, setisHeaderFooterShow] = useState(true);
+  const [isLogin, setIsLogin] = useState(false)
 
   useEffect(() => {
     getCountry("http://localhost:4000/api/get");
@@ -39,19 +45,33 @@ function App() {
     selectedState,
     isOpenProductModal,
     setisOpenProductModal,
+    isHeaderFooterShow,
+    setisHeaderFooterShow,
+    isLogin, setIsLogin
   };
   return (
     <>
       <MyContext.Provider value={values}>
-        <Header />
+       {
+         isHeaderFooterShow === true && <Header />
+       }
         <Routes>
           <Route path="/" exact={true} element={<Home />} />
-          <Route path="/cat/:id"  exact={true} element={<Listing />} />
+          <Route path="/cat/:id" exact={true} element={<Listing />} />
+          <Route
+            path="/product/:id"
+            exact={true}
+            element={<ProductDetails />}
+          />
+          <Route path="/cart" exact={true} element={<Cart />} />
+          <Route path="/signIn" exact={true} element={<SignIn />} />
+          <Route path="/signUp" exact={true} element={<SignUp />} />
         </Routes>
-        <Footer />
-        {isOpenProductModal === true && (
-          <ProductModal />
-        )}
+        {
+         isHeaderFooterShow === true && <Footer />
+       }
+        
+        {isOpenProductModal === true && <ProductModal />}
       </MyContext.Provider>
     </>
   );

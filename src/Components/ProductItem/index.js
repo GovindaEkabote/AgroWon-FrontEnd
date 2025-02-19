@@ -15,12 +15,12 @@ function ProductItem(props) {
   
   return (
     <>
-      <div className={`productItem ${props.itemView}`}>
+      <div className={`productItem ${props.itemView} `}>
       <div className="imgWrapper">
         <img
           src="https://m.media-amazon.com/images/I/81+zE0CPfRL._SX679_.jpg"
           alt="toplist"
-          className="w-100"
+          className="w-100 "
         />
         <span className="badge badge-primary">20%</span>
         <div className="actions">

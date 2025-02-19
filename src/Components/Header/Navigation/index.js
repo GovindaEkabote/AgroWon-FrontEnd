@@ -22,59 +22,59 @@ const Navigation = () => {
 
                 <div className={`sidebarNav ${isOpenSidebarVal=== true ? 'open':''}`}>
                   <ul>
-                      <li><Link top="/"><Button>Vegetables<IoIosArrowForward className="ml-auto"/></Button></Link>
+                      <li><Link to="/"><Button>Vegetables<IoIosArrowForward className="ml-auto"/></Button></Link>
                       <div className="submenu shadow">
-                          <Link top="/"><Button>Green Vegetables</Button></Link>
-                          <Link top="/"><Button>Beans</Button></Link>
-                          <Link top="/"><Button>Root Vegetables</Button></Link>
-                          <Link top="/"><Button>Cruciferous</Button></Link>
-                          <Link top="/"><Button>Nightshades</Button></Link>
+                          <Link to="/"><Button>Green Vegetables</Button></Link>
+                          <Link to="/"><Button>Beans</Button></Link>
+                          <Link to="/"><Button>Root Vegetables</Button></Link>
+                          <Link to="/"><Button>Cruciferous</Button></Link>
+                          <Link to="/"><Button>Nightshades</Button></Link>
                       </div>
                       </li>
-                      <li><Link top="/"><Button>Fruits <IoIosArrowForward className="ml-auto"/></Button></Link>
+                      <li><Link to="/"><Button>Fruits <IoIosArrowForward className="ml-auto"/></Button></Link>
                       <div className="submenu shadow ">
-                          <Link top="/"><Button>Fleshy Fruits</Button></Link>
-                          <Link top="/"><Button>Dry Fruits</Button></Link>
-                          <Link top="/"><Button>Aggregate Fruits</Button></Link>
-                          <Link top="/"><Button>Multiple Fruits</Button></Link>
-                          <Link top="/"><Button>Citrus Fruits</Button></Link>
-                          <Link top="/"><Button>Subtropical Fruits</Button></Link>
-                          <Link top="/"><Button>Stone Fruits</Button></Link>
-                          <Link top="/"><Button>Melons</Button></Link>
+                          <Link to="/"><Button>Fleshy Fruits</Button></Link>
+                          <Link to="/"><Button>Dry Fruits</Button></Link>
+                          <Link to="/"><Button>Aggregate Fruits</Button></Link>
+                          <Link to="/"><Button>Multiple Fruits</Button></Link>
+                          <Link to="/"><Button>Citrus Fruits</Button></Link>
+                          <Link to="/"><Button>Subtropical Fruits</Button></Link>
+                          <Link to="/"><Button>Stone Fruits</Button></Link>
+                          <Link to="/"><Button>Melons</Button></Link>
                       </div>
                       </li>
-                      <li><Link top="/"><Button>Flowers <IoIosArrowForward className="ml-auto"/></Button></Link>
+                      <li><Link to="/"><Button>Flowers <IoIosArrowForward className="ml-auto"/></Button></Link>
                       <div className="submenu shadow">
-                <Link top="/"><Button>Marigold </Button></Link>
-                <Link top="/"><Button>Lotus (Kamal)</Button></Link>
-                <Link top="/"><Button>Jasmine (Chameli/Mogra)</Button></Link>
-                <Link top="/"><Button>Hibiscus (Gudhal)</Button></Link>
-                <Link top="/"><Button>Rose (Gulab)</Button></Link>
+                <Link to="/"><Button>Marigold </Button></Link>
+                <Link to="/"><Button>Lotus (Kamal)</Button></Link>
+                <Link to="/"><Button>Jasmine (Chameli/Mogra)</Button></Link>
+                <Link to="/"><Button>Hibiscus (Gudhal)</Button></Link>
+                <Link to="/"><Button>Rose (Gulab)</Button></Link>
                 </div>
                       </li>
-                      <li><Link top="/"><Button>Organic Fertilizer <IoIosArrowForward className="ml-auto"/></Button></Link>
+                      <li><Link to="/"><Button>Organic Fertilizer <IoIosArrowForward className="ml-auto"/></Button></Link>
                       <div className="submenu shadow">
-                <Link top="/"><Button>Animal-Based Fertilizers</Button></Link>
-                <Link top="/"><Button>Plant-Based Fertilizers</Button></Link>
-                <Link top="/"><Button>Mineral-Based Fertilizers</Button></Link>
-                <Link top="/"><Button>Worm-Based Fertilizers</Button></Link>
+                <Link to="/"><Button>Animal-Based Fertilizers</Button></Link>
+                <Link to="/"><Button>Plant-Based Fertilizers</Button></Link>
+                <Link to="/"><Button>Mineral-Based Fertilizers</Button></Link>
+                <Link to="/"><Button>Worm-Based Fertilizers</Button></Link>
                 </div>
                       </li>
-                      <li><Link top="/"><Button>Inorganic Fertilizer <IoIosArrowForward className="ml-auto"/></Button></Link>
+                      <li><Link to="/"><Button>Inorganic Fertilizer <IoIosArrowForward className="ml-auto"/></Button></Link>
                       <div className="submenu shadow">
-                <Link top="/"><Button>Nitrogen-Based Fertilizers</Button></Link>
-                <Link top="/"><Button>Phosphorus-Based Fertilizers</Button></Link>
-                <Link top="/"><Button>Potassium-Based Fertilizers</Button></Link>
-                <Link top="/"><Button>Compound or Mixed Fertilizers</Button></Link>
-                <Link top="/"><Button>Specialized Fertilizers</Button></Link>
+                <Link to="/"><Button>Nitrogen-Based Fertilizers</Button></Link>
+                <Link to="/"><Button>Phosphorus-Based Fertilizers</Button></Link>
+                <Link to="/"><Button>Potassium-Based Fertilizers</Button></Link>
+                <Link to="/"><Button>Compound or Mixed Fertilizers</Button></Link>
+                <Link to="/"><Button>Specialized Fertilizers</Button></Link>
                 </div>                      
                       </li>
-                      <li><Link top="/"><Button>Non-Veg <IoIosArrowForward className="ml-auto"/></Button></Link>
+                      <li><Link to="/"><Button>Non-Veg <IoIosArrowForward className="ml-auto"/></Button></Link>
                       <div className="submenu shadow">
-                <Link top="/"><Button>Red Meat</Button></Link>
-                <Link top="/"><Button>White Meat</Button></Link>
-                <Link top="/"><Button>Eggs</Button></Link>
-                <Link top="/"><Button>Sea Food</Button></Link>
+                <Link to="/"><Button>Red Meat</Button></Link>
+                <Link to="/"><Button>White Meat</Button></Link>
+                <Link to="/"><Button>Eggs</Button></Link>
+                <Link to="/"><Button>Sea Food</Button></Link>
                 </div>
                       </li>
                   </ul>
@@ -85,81 +85,81 @@ const Navigation = () => {
           <div className="col-sm-10 navPart2 d-flex items-center	">
             <ul className="list list-inline ml-auto">
               <li className="list-inline-item">
-                <Link top="/">
+                <Link to="/">
                   <Button>Home</Button>
                 </Link>
               </li>
               <li className="list-inline-item">
-                <Link top="/">
+                <Link to="/">
                   <Button>Vegetables</Button>
                 </Link>
                 <div className="submenu shadow">
-                <Link top="/"><Button>Green Vegetables</Button></Link>
-                <Link top="/"><Button>Beans</Button></Link>
-                <Link top="/"><Button>Root Vegetables</Button></Link>
-                <Link top="/"><Button>Cruciferous</Button></Link>
-                <Link top="/"><Button>Nightshades</Button></Link>
+                <Link to="/"><Button>Green Vegetables</Button></Link>
+                <Link to="/"><Button>Beans</Button></Link>
+                <Link to="/"><Button>Root Vegetables</Button></Link>
+                <Link to="/"><Button>Cruciferous</Button></Link>
+                <Link to="/"><Button>Nightshades</Button></Link>
                 </div>
               </li>
               <li className="list-inline-item">
-                <Link top="/">
+                <Link to="/">
                   <Button>Fruits</Button>
                 </Link>
                 <div className="submenu shadow">
-                <Link top="/"><Button>Fleshy Fruits</Button></Link>
-                <Link top="/"><Button>Dry Fruits</Button></Link>
-                <Link top="/"><Button>Aggregate Fruits</Button></Link>
-                <Link top="/"><Button>Multiple Fruits</Button></Link>
-                <Link top="/"><Button>Citrus Fruits</Button></Link>
-                <Link top="/"><Button>Subtropical Fruits</Button></Link>
-                <Link top="/"><Button>Stone Fruits</Button></Link>
-                <Link top="/"><Button>Melons</Button></Link>
+                <Link to="/"><Button>Fleshy Fruits</Button></Link>
+                <Link to="/"><Button>Dry Fruits</Button></Link>
+                <Link to="/"><Button>Aggregate Fruits</Button></Link>
+                <Link to="/"><Button>Multiple Fruits</Button></Link>
+                <Link to="/"><Button>Citrus Fruits</Button></Link>
+                <Link to="/"><Button>Subtropical Fruits</Button></Link>
+                <Link to="/"><Button>Stone Fruits</Button></Link>
+                <Link to="/"><Button>Melons</Button></Link>
                 </div>
               </li>
               <li className="list-inline-item">
-                <Link top="/">
+                <Link to="/">
                   <Button>Flowers</Button>
                 </Link>
                 <div className="submenu shadow">
-                <Link top="/"><Button>Marigold </Button></Link>
-                <Link top="/"><Button>Lotus (Kamal)</Button></Link>
-                <Link top="/"><Button>Jasmine (Chameli/Mogra)</Button></Link>
-                <Link top="/"><Button>Hibiscus (Gudhal)</Button></Link>
-                <Link top="/"><Button>Rose (Gulab)</Button></Link>
+                <Link to="/"><Button>Marigold </Button></Link>
+                <Link to="/"><Button>Lotus (Kamal)</Button></Link>
+                <Link to="/"><Button>Jasmine (Chameli/Mogra)</Button></Link>
+                <Link to="/"><Button>Hibiscus (Gudhal)</Button></Link>
+                <Link to="/"><Button>Rose (Gulab)</Button></Link>
                 </div>
               </li>
               <li className="list-inline-item">
-                <Link top="/">
+                <Link to="/">
                   <Button>Organic Fertilizer</Button>
                 </Link>
                 <div className="submenu shadow">
-                <Link top="/"><Button>Animal-Based Fertilizers</Button></Link>
-                <Link top="/"><Button>Plant-Based Fertilizers</Button></Link>
-                <Link top="/"><Button>Mineral-Based Fertilizers</Button></Link>
-                <Link top="/"><Button>Worm-Based Fertilizers</Button></Link>
+                <Link to="/"><Button>Animal-Based Fertilizers</Button></Link>
+                <Link to="/"><Button>Plant-Based Fertilizers</Button></Link>
+                <Link to="/"><Button>Mineral-Based Fertilizers</Button></Link>
+                <Link to="/"><Button>Worm-Based Fertilizers</Button></Link>
                 </div>
               </li>
               <li className="list-inline-item">
-                <Link top="/">
+                <Link to="/">
                   <Button>Inorganic Fertilizer</Button>
                 </Link>
                 <div className="submenu shadow">
-                <Link top="/"><Button>Nitrogen-Based Fertilizers</Button></Link>
-                <Link top="/"><Button>Phosphorus-Based Fertilizers</Button></Link>
-                <Link top="/"><Button>Potassium-Based Fertilizers</Button></Link>
-                <Link top="/"><Button>Compound or Mixed Fertilizers</Button></Link>
-                <Link top="/"><Button>Specialized Fertilizers</Button></Link>
+                <Link to="/"><Button>Nitrogen-Based Fertilizers</Button></Link>
+                <Link to="/"><Button>Phosphorus-Based Fertilizers</Button></Link>
+                <Link to="/"><Button>Potassium-Based Fertilizers</Button></Link>
+                <Link to="/"><Button>Compound or Mixed Fertilizers</Button></Link>
+                <Link to="/"><Button>Specialized Fertilizers</Button></Link>
                 </div>
               </li>
               <li className="list-inline-item">
-                <Link top="/">
+                <Link to="/">
                   <Button>Non-Veg</Button>
                 </Link>
                 <div className="submenu shadow">
-                <Link top="/"><Button>Red Meat</Button></Link>
-                <Link top="/"><Button>White Meat</Button></Link>
-                <Link top="/"><Button>Eggs</Button></Link>
-                <Link top="/"><Button>Sea Food</Button></Link>
+                <Link to="/"><Button>Red Meat</Button></Link>
+                <Link to="/"><Button>White Meat</Button></Link>
+                <Link to="/"><Button>Eggs</Button></Link>
+                <Link to="/"><Button>Sea Food</Button></Link>
                 </div>
               </li>
             </ul>
