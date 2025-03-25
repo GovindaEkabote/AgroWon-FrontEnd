@@ -632,6 +632,7 @@ nav .navPart2 ul li:hover .submenu {
 
 .productItem .imgWrapper img {
   transition: all 0.3s ease-in-out;
+  height: 180px;
 }
 
 .productItem .imgWrapper:hover img {

@@ -18,25 +18,22 @@ import { CiMail } from "react-icons/ci";
 import { fetchDataFromApi } from "../../utils/api";
 
 const Home = () => {
-  const [catData, setCatDate] = useState([])
-  useEffect(() =>{
-    fetchDataFromApi("/api/v1/get-category").then((res)=>{
-      setCatDate(res.categoryList)
-    })
-    const filterKey = "isFeatured";
-    fetchDataFromApi(`/api/v1/get-product/?product=${filterKey}`).then((res) =>{
-      setCatDate(res);
-      console.log(res);
-      
-    })
-  },[])
+  const [catData, setCatDate] = useState([]);
+  const [featuredProducts, setFeaturedProducts] = useState([]);
+
+  useEffect(() => {
+    fetchDataFromApi("/api/v1/get-category").then((res) => {
+      setCatDate(res.categoryList);
+    });
+    fetchDataFromApi(`/api/v1/feature`).then((res) => {
+      setFeaturedProducts(res);
+    });
+  }, []);
   return (
     <>
       <HomeBanner />
-      {
-        catData?.length >  0  &&  <HomeCat catData={catData}/>
-      }
-     
+      {catData?.length > 0 && <HomeCat catData={catData} />}
+
       <section className="homeProducts">
         <div className="container">
           <div className="row">
@@ -79,24 +76,14 @@ const Home = () => {
                   modules={[Navigation, Autoplay]}
                   className="mySwiper"
                 >
-                  <SwiperSlide>
-                    <ProductItem />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <ProductItem />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <ProductItem />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <ProductItem />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <ProductItem />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <ProductItem />
-                  </SwiperSlide>
+                  {featuredProducts?.length !== 0 &&
+                    featuredProducts?.map((item, index) => {
+                      return (
+                        <SwiperSlide key={index}>
+                          <ProductItem item={item} />
+                        </SwiperSlide>
+                      );
+                    })}
                 </Swiper>
               </div>
 
@@ -127,7 +114,7 @@ const Home = () => {
               {/* Small Banner Here.. */}
               <div className="d-flex mt-4 mb-5 bannerSec">
                 <div className="banner">
-                  <img 
+                  <img
                     src={smallBanner1}
                     alt="product"
                     className="w-[100%] cursor mt-4 rounded-xl"
@@ -171,7 +158,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-
     </>
   );
 };
