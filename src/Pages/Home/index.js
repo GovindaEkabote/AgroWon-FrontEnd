@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -15,13 +15,28 @@ import smallBanner2 from "../../assets/SmallBanner2.png";
 import smallBanner1 from "../../assets/SmallBanner1.png";
 import coupan from "../../assets/coupan.png";
 import { CiMail } from "react-icons/ci";
+import { fetchDataFromApi } from "../../utils/api";
 
 const Home = () => {
-  const [value, setValue] = React.useState(5);
+  const [catData, setCatDate] = useState([])
+  useEffect(() =>{
+    fetchDataFromApi("/api/v1/get-category").then((res)=>{
+      setCatDate(res.categoryList)
+    })
+    const filterKey = "isFeatured";
+    fetchDataFromApi(`/api/v1/get-product/?product=${filterKey}`).then((res) =>{
+      setCatDate(res);
+      console.log(res);
+      
+    })
+  },[])
   return (
     <>
       <HomeBanner />
-      <HomeCat />
+      {
+        catData?.length >  0  &&  <HomeCat catData={catData}/>
+      }
+     
       <section className="homeProducts">
         <div className="container">
           <div className="row">
@@ -39,7 +54,7 @@ const Home = () => {
             <div className="col-md-9 productRow">
               <div className="d-flex align-item-center">
                 <div className="info w-75">
-                  <h3 className="mb-0 hd">TOP PRODUCTS</h3>
+                  <h3 className="mb-0 hd">FEATURED PRODUCTS</h3>
                   <p className="text-light text-sm mb-0">
                     Do not miss the current offers until the end of April.
                   </p>
