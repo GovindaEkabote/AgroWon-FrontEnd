@@ -20,6 +20,7 @@ import { fetchDataFromApi } from "../../utils/api";
 const Home = () => {
   const [catData, setCatDate] = useState([]);
   const [featuredProducts, setFeaturedProducts] = useState([]);
+  const [productDate, setProductData] = useState([])
 
   useEffect(() => {
     fetchDataFromApi("/api/v1/get-category").then((res) => {
@@ -28,6 +29,12 @@ const Home = () => {
     fetchDataFromApi(`/api/v1/feature`).then((res) => {
       setFeaturedProducts(res);
     });
+
+    fetchDataFromApi("/api/v1/get-product").then((res) =>{
+      setProductData(res)
+      console.log(res);
+      
+    })
   }, []);
   return (
     <>
@@ -101,14 +108,11 @@ const Home = () => {
               </div>
 
               <div className="product_row productRow2 w-100 mt-4 d-flex">
-                <ProductItem />
-                <ProductItem />
-                <ProductItem />
-                <ProductItem />
-                <ProductItem />
-                <ProductItem />
-                <ProductItem />
-                <ProductItem />
+              {
+                productDate?.products?.length !== 0 && productDate?.products?.map((item,index) =>{
+                  return ( <ProductItem item={item} />)
+                })
+              }
               </div>
 
               {/* Small Banner Here.. */}

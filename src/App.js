@@ -12,19 +12,36 @@ import ProductDetails from "./Pages/ProductDetails";
 import Cart from "./Pages/Cart";
 import SignIn from "./Pages/signIn";
 import SignUp from "./Pages/signUp";
+import Sidebar from "./Components/Sidebar";
+import { fetchDataFromApi } from "./utils/api";
 
 const MyContext = createContext();
 
 function App() {
   const [stateList, setStateList] = useState([]);
   const [selectedState, setSelectedState] = useState("");
-  const [isOpenProductModal, setisOpenProductModal] = useState(false);
+  const [isOpenProductModal, setisOpenProductModal] = useState({
+    id: "",
+    open: false,
+  });
   const [isHeaderFooterShow, setisHeaderFooterShow] = useState(true);
-  const [isLogin, setIsLogin] = useState(false)
+  const [isLogin, setIsLogin] = useState(false);
+  const [productData, setProductData] = useState();
 
   useEffect(() => {
     getCountry("http://localhost:4000/api/get");
   }, []);
+
+  useEffect(() => {
+    if (isOpenProductModal.id) {
+      fetchDataFromApi(`/api/v1/get/${isOpenProductModal.id}`)
+        .then((res) => {
+          setProductData(res.product); // Store just the product object
+          console.log("Fetched data:", res.product); // Debug
+        })
+        .catch((error) => console.error("Fetch error:", error));
+    }
+  }, [isOpenProductModal]);
 
   const getCountry = async (url) => {
     try {
@@ -47,14 +64,13 @@ function App() {
     setisOpenProductModal,
     isHeaderFooterShow,
     setisHeaderFooterShow,
-    isLogin, setIsLogin
+    isLogin,
+    setIsLogin,
   };
   return (
     <>
       <MyContext.Provider value={values}>
-       {
-         isHeaderFooterShow === true && <Header />
-       }
+        {isHeaderFooterShow === true && <Header />}
         <Routes>
           <Route path="/" exact={true} element={<Home />} />
           <Route path="/cat/:id" exact={true} element={<Listing />} />
@@ -66,12 +82,13 @@ function App() {
           <Route path="/cart" exact={true} element={<Cart />} />
           <Route path="/signIn" exact={true} element={<SignIn />} />
           <Route path="/signUp" exact={true} element={<SignUp />} />
+          {/* <Route path="/slider" exact={true} element={<Sidebar />} /> */}
         </Routes>
-        {
-         isHeaderFooterShow === true && <Footer />
-       }
-        
-        {isOpenProductModal === true && <ProductModal />}
+        {isHeaderFooterShow === true && <Footer />}
+
+        {isOpenProductModal.open && productData && (
+          <ProductModal data={productData} />
+        )}
       </MyContext.Provider>
     </>
   );

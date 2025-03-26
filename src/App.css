@@ -954,7 +954,11 @@ footer .copywrite ul li a {
 .zoomSliderBig {
   width: 100% !important;
 }
+.zoomSliderBig{
+  height: 100% !important;
 
+  overflow: hidden;
+}
 .zoomSlider {
   padding-top: 30px;
 }
@@ -962,6 +966,10 @@ footer .copywrite ul li a {
 .zoomSlider .slick-slide {
   padding-right: 20px !important;
 }
+
+/* .slick-slide{
+  padding-right: 10px !important;
+} */
 
 .zoomSlider * {
   outline: none !important;
