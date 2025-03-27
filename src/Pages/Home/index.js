@@ -11,8 +11,6 @@ import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules";
 import ProductItem from "../../Components/ProductItem";
 import HomeCat from "../../Components/HomeCat";
-import smallBanner2 from "../../assets/SmallBanner2.png";
-import smallBanner1 from "../../assets/SmallBanner1.png";
 import coupan from "../../assets/coupan.png";
 import { CiMail } from "react-icons/ci";
 import { fetchDataFromApi } from "../../utils/api";
@@ -20,7 +18,8 @@ import { fetchDataFromApi } from "../../utils/api";
 const Home = () => {
   const [catData, setCatDate] = useState([]);
   const [featuredProducts, setFeaturedProducts] = useState([]);
-  const [productDate, setProductData] = useState([])
+  const [productDate, setProductData] = useState([]);
+  const [fertilizerProducts, setFertilizerProducts] = useState([]);
 
   useEffect(() => {
     fetchDataFromApi("/api/v1/get-category").then((res) => {
@@ -30,12 +29,28 @@ const Home = () => {
       setFeaturedProducts(res);
     });
 
-    fetchDataFromApi("/api/v1/get-product").then((res) =>{
-      setProductData(res)
-      console.log(res);
-      
-    })
+    fetchDataFromApi(
+      "/api/v1/get-product?perPage=8"
+    ).then((res) => {
+      setProductData(res);
+    });
   }, []);
+
+  useEffect(() => {
+    fetchDataFromApi("/api/v1/get-product?category=Fertilizer&perPage=8")
+      .then((res) => {
+        if (res?.success && Array.isArray(res.products)) {
+          setFertilizerProducts(res.products);  // ✅ Set only the products array
+        } else {
+          setFertilizerProducts([]);  // ✅ Fallback in case of an error or empty data
+        }
+      })
+      .catch((err) => {
+        console.error("Error fetching products:", err);
+        setFertilizerProducts([]);
+      });
+  }, []);
+
   return (
     <>
       <HomeBanner />
@@ -108,29 +123,33 @@ const Home = () => {
               </div>
 
               <div className="product_row productRow2 w-100 mt-4 d-flex">
-              {
-                productDate?.products?.length !== 0 && productDate?.products?.map((item,index) =>{
-                  return ( <ProductItem item={item} />)
-                })
-              }
+                {productDate?.products?.length !== 0 &&
+                  productDate?.products?.map((item, index) => {
+                    return <ProductItem key={index} item={item} />;
+                  })}
               </div>
 
               {/* Small Banner Here.. */}
-              <div className="d-flex mt-4 mb-5 bannerSec">
-                <div className="banner">
-                  <img
-                    src={smallBanner1}
-                    alt="product"
-                    className="w-[100%] cursor mt-4 rounded-xl"
-                  />
+              <div className="d-flex align-item-center mt-5">
+                <div className="info w-75">
+                  <h3 className="mb-0 hd">FERTILIZER PRODUCTS</h3>
+                  <p className="text-light text-sm mb-0">
+                    Fertilizer Products with updated stoks.
+                  </p>
                 </div>
-                <div className="banner">
-                  <img
-                    src={smallBanner2}
-                    alt="product"
-                    className="cursor w-[100%] mt-4 rounded-xl"
-                  />
-                </div>
+                <Button className="viewAllBtn ml-auto text-black">
+                  View All <FaAngleRight />
+                </Button>
+              </div>
+
+              <div className="product_row productRow2 w-100 mt-4 d-flex">
+                {fertilizerProducts?.length > 0 ? (
+                  fertilizerProducts.map((item, index) => (
+                    <ProductItem key={index} item={item} />
+                  ))
+                ) : (
+                  <p>No fertilizer products available.</p>
+                )}
               </div>
             </div>
           </div>
