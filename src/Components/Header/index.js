@@ -65,7 +65,9 @@ const Header = () => {
             </div>
           </div>
         </header>
-        <Navigation />
+        {context.categoryData?.length !== 0 && (
+          <Navigation navData={context.categoryData} />
+        )}
       </div>
     </>
   );

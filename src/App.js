@@ -27,9 +27,15 @@ function App() {
   const [isHeaderFooterShow, setisHeaderFooterShow] = useState(true);
   const [isLogin, setIsLogin] = useState(false);
   const [productData, setProductData] = useState();
+  const [categoryData, setCategoryData] = useState([])
 
   useEffect(() => {
     getCountry("http://localhost:4000/api/get");
+
+  
+    fetchDataFromApi("/api/v1/get-category").then((res) =>{
+      setCategoryData(res.categoryList)
+    })
   }, []);
 
   useEffect(() => {
@@ -66,6 +72,8 @@ function App() {
     setisHeaderFooterShow,
     isLogin,
     setIsLogin,
+    categoryData, 
+    setCategoryData,
   };
   return (
     <>
@@ -82,7 +90,7 @@ function App() {
           <Route path="/cart" exact={true} element={<Cart />} />
           <Route path="/signIn" exact={true} element={<SignIn />} />
           <Route path="/signUp" exact={true} element={<SignUp />} />
-          {/* <Route path="/slider" exact={true} element={<Sidebar />} /> */}
+          <Route path="/slider" exact={true} element={<Sidebar />} />
         </Routes>
         {isHeaderFooterShow === true && <Footer />}
 
