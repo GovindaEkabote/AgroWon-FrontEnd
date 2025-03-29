@@ -10,7 +10,6 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ProductItem from "../../Components/ProductItem";
 import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
 
 const Listing = () => {
   const [anchorEl, setAnchorEl] = useState(null);

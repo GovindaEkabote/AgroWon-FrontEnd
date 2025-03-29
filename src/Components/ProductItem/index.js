@@ -53,7 +53,7 @@ function ProductItem(props) {
         onMouseLeave={handleMouseLeave}
       >
         <div className="imgWrapper">
-          <Link to={'/product/1'}>
+          <Link to={`/product/${props.item?._id}`}>
           {isHovered && props.item?.images?.length > 1 ? (
             <Slider {...settings} ref={sliderRef}>
               {props.item.images.map((img, index) => (

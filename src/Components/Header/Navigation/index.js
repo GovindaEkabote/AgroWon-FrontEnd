@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { MdOutlineMenu } from "react-icons/md";
 import { FaAngleDown } from "react-icons/fa";
 import { useState } from "react";
-import { IoIosArrowForward } from "react-icons/io";
 
 const Navigation = (props) => {
   const [isOpenSidebarVal, setIsOpenSidebarVal] = useState(false);

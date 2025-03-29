@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ProductZoom from "../../Components/ProductZoom";
 import Rating from "@mui/material/Rating";
 import QuantityBox from "../../Components/QuantityBox";
@@ -10,10 +10,33 @@ import Tooltip from "@mui/material/Tooltip";
 import userProfile from "../../assets/Add1.jpg";
 import { VscCodeReview } from "react-icons/vsc";
 import RelatedProducts from "./RelatedProducts";
+import { Link, useParams } from "react-router-dom";
+import { fetchDataFromApi } from "../../utils/api";
 
 const ProductDetails = () => {
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [activeSize, setActiveSize] = useState(null);
   const [activeTabs, setActiveTabs] = useState(0);
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await fetchDataFromApi(`/api/v1/get/${id}`);
+        setProduct(response.product);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching product:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchProduct();
+  }, [id]);
+
+  if (loading) return <div>Loading...</div>;
+  if (!product) return <div>Product not found</div>;
 
   const isActive = (index) => {
     setActiveSize(index);
@@ -24,27 +47,22 @@ const ProductDetails = () => {
         <div className="container">
           <div className="row">
             <div className="col-md-4 pl-5">
-              <ProductZoom />
+              <ProductZoom images={product.images} />
             </div>
             <div className="col-md-8 pl-5 ">
-              <h2 className="hd uppercase">
-                SJ Organics Vermicompost For Plants - 20 Kg | Odorless
-                Fertilizer Powder | Ready to Use Organic Manure | Fertilizers
-                for Plant Home Garden | Enriched Plant Food Fertilisers |
-                Compost for Indoor plants
-              </h2>
+              <h2 className="hd uppercase">{product.name}</h2>
               <ul className="list list-inline d-flex align-items-center">
                 <li className="list-inline-item">
                   <div className="d-flex align-items-center">
                     <span className="text-light mr-2">Brand: </span>
-                    <span className="font-bold">TrustBasket</span>
+                    <span className="font-bold">{product.brand}</span>
                   </div>
                 </li>
                 <li className="list-inline-item">
                   <div className="d-flex align-items-center">
                     <Rating
                       name="read-only"
-                      value={4.5}
+                      value={Number(product.rating) || 0}
                       precision={0.5}
                       size="small"
                       readOnly
@@ -54,65 +72,46 @@ const ProductDetails = () => {
                 </li>
               </ul>
               <div className="d-flex info mb-2">
-                <span className="oldPrice ">$30.00</span>
-                <span className="netPrice text-danger ml-2">$14.5</span>
+                <span className="oldPrice ">{product.oldPrice}</span>
+                <span className="netPrice text-danger ml-2">
+                  {product.price}
+                </span>
               </div>
               <span className="badge badge-success uppercase">in stock</span>
               <h6 className="mt-2 font-bold">About this item</h6>
-              <p className="mt-2 mb-0">
-                SJ vermicompost is derived from decomposition of organic matter
-                through various species of earthworms. It is 100% organic with
-                no added chemicals; increases water holding capacity; enhances
-                growth and increases size of flower. How to Use : Mix with
-                cocopeat and SJ Soil Activator to obtain a fine mix of potting
-                soil suitable for your plants Contains high amount of Nitrogen,
-                Potassium and Phosphorus and other macro and micro elements for
-                plants. Can be used for home, terrace garden and fits well with
-                all kinds of plants.
-              </p>
+              <p className="mt-2 mb-0">{product.description}</p>
               <div className="productSize d-flex align-items-center">
                 <span>Size/Weight: </span>
                 <ul className="list list-inline d-flex mb-0 pl-4">
-                  <li className="list-inline-item">
-                    <a
-                      className={`tag ${activeSize === 0 ? "active" : ""}`}
-                      onClick={() => isActive(0)}
-                    >
-                      5KG
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className={`tag ${activeSize === 1 ? "active" : ""}`}
-                      onClick={() => isActive(1)}
-                    >
-                      10KG
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className={`tag ${activeSize === 2 ? "active" : ""}`}
-                      onClick={() => isActive(2)}
-                    >
-                      15KG
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className={`tag ${activeSize === 3 ? "active" : ""}`}
-                      onClick={() => isActive(3)}
-                    >
-                      20KG
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className={`tag ${activeSize === 4 ? "active" : ""}`}
-                      onClick={() => isActive(4)}
-                    >
-                      25KG
-                    </a>
-                  </li>
+                  {product?.weight?.length > 0 ? (
+                    product.weight.map((item, index) => (
+                      <li className="list-inline-item" key={index}>
+                        <a
+                          className={`tag ${
+                            activeSize === index ? "active" : ""
+                          }`}
+                          onClick={() => isActive(index)}
+                        >
+                          {item}
+                        </a>
+                      </li>
+                    ))
+                  ) : product?.quantity?.length > 0 ? (
+                    product.quantity.map((item, index) => (
+                      <li className="list-inline-item" key={index}>
+                        <a
+                          className={`tag ${
+                            activeSize === index ? "active" : ""
+                          }`}
+                          onClick={() => isActive(index)}
+                        >
+                          {item}
+                        </a>
+                      </li>
+                    ))
+                  ) : (
+                    <li className="list-inline-item">No options available</li>
+                  )}
                 </ul>
               </div>
               <div className="d-flex align-items-center">
@@ -169,61 +168,7 @@ const ProductDetails = () => {
                 {activeTabs === 0 && (
                   <div className="tabContainer">
                     <h2>Product Description</h2>
-                    <p>
-                      Name : SJ Organics Black Gold Vermicompost 20KG Form
-                      Factor : Powder <br />
-                      Product Breadth : 1 Cm <br />
-                      Product Height : 1 Cm <br />
-                      Product Length : 1 Cm <br />
-                      Net Quantity (N) : Pack Of 1
-                    </p>
-                    <h2>Packaging and Delivery</h2>
-                    <p>
-                      Contact Information Meesho operates as a marketplace
-                      wherein third-party sellers engage in the sale of products
-                      to customers. To contact a seller, kindly dispatch a
-                      written communication to the address provided below
-                      including the product page URL. To, Seller Name -
-                      SJOrganics PID - 331510935 Seller Mailbox: Contact Seller
-                      3rd Floor, Wing-E, Helios Business Park, Kadubeesanahalli
-                      Village, Varthur Hobli, Outer Ring Road, Bengaluru,
-                      Karnataka 560103
-                    </p>
-                    <br />
-                    <p>
-                      SJ vermicompost is derived from decomposition of organic
-                      matter through various species of earthworms. It is 100%
-                      organic with no added chemicals; increases water holding
-                      capacity; enhances growth and increases size of flower.
-                      How to Use : Mix with cocopeat and SJ Soil Activator to
-                      obtain a fine mix of potting soil suitable for your plants
-                      Contains high amount of Nitrogen, Potassium and Phosphorus
-                      and other macro and micro elements for plants. Can be used
-                      for home, terrace garden and fits well with all kinds of
-                      plants.
-                    </p>
-                    <br />
-                    <h2>Suggested to Use</h2>
-                    <p>
-                      Mix Cocopeat, Vermicompost & Soil in 35:35:30 Ratio for
-                      Optimal Plant Growth.For Faster Growth,Use SJ Soil
-                      Activator by Reducing Soil Percentage Mix Cocopeat,
-                      Vermicompost & Soil in 35:35:30 Ratio for Optimal Plant
-                      Growth.For Faster Growth,Use SJ Soil Activator by Reducing
-                      Soil Percentage
-                    </p>
-                    <p>
-                      SJ vermicompost is derived from decomposition of organic
-                      matter through various species of earthworms. It is 100%
-                      organic with no added chemicals; increases water holding
-                      capacity; enhances growth and increases size of flower.
-                      How to Use : Mix with cocopeat and SJ Soil Activator to
-                      obtain a fine mix of potting soil suitable for your plants
-                      Contains high amount of Nitrogen, Potassium and Phosphorus
-                      and other macro and micro elements for plants. Can be used
-                      for home, terrace garden and fits well with all kinds of
-                      plants.
-                    </p>
+                    {product.description}
                   </div>
                 )}
                 {activeTabs === 1 && (
@@ -466,10 +411,10 @@ const ProductDetails = () => {
               </div>
             </div>
           </div>
-          <br/>
+          <br />
 
-          <RelatedProducts  title="RELATED PRODUCTS"/>
-          <RelatedProducts title="RECENTLY VIEW PRODUCTS" />
+          <RelatedProducts title="RELATED PRODUCTS" />
+          <RelatedProducts title="OUR PRODUCTS" />
         </div>
       </section>
     </>
