@@ -179,43 +179,67 @@ const ProductDetails = () => {
                           <tr className="stand-up">
                             <th>Stand Up</th>
                             <td>
-                              <p>35'L x 24'W x 37-45'H (Front to back wheel)</p>
+                              <p> {product.itemWeight}</p>
                             </td>
                           </tr>
                           <tr className="folded-wo-wheels">
                             <th>folded (w/o wheels) </th>
                             <td>
-                              <p>35'L x 24'W x 37-45'H (Front to back wheel)</p>
+                              <p>{product.itemForm}</p>
                             </td>
                           </tr>
                           <tr className="folded-wo-wheels">
                             <th>folded (w/o wheels) </th>
                             <td>
-                              <p>35'L x 24'W x 37-45'H (Front to back wheel)</p>
+                              <p>{product.manufacturer}</p>
                             </td>
                           </tr>
                           <tr className="folded-wo-wheels">
                             <th>folded (w/o wheels) </th>
                             <td>
-                              <p>35'L x 24'W x 37-45'H (Front to back wheel)</p>
+                              <p>{product.netQuantity}</p>
                             </td>
                           </tr>
                           <tr className="folded-wo-wheels">
                             <th>folded (w/o wheels) </th>
                             <td>
-                              <p>35'L x 24'W x 37-45'H (Front to back wheel)</p>
+                              <p>{product.modelNumber}</p>
                             </td>
                           </tr>
                           <tr className="folded-wo-wheels">
                             <th>folded (w/o wheels) </th>
                             <td>
-                              <p>35'L x 24'W x 37-45'H (Front to back wheel)</p>
+                              <p>{product.countryOfOrigin}</p>
                             </td>
                           </tr>
                           <tr className="folded-wo-wheels">
                             <th>folded (w/o wheels) </th>
                             <td>
-                              <p>35'L x 24'W x 37-45'H (Front to back wheel)</p>
+                              <p>{product.productDimensions}</p>
+                            </td>
+                          </tr>
+                          <tr className="folded-wo-wheels">
+                            <th>folded (w/o wheels) </th>
+                            <td>
+                              <p>{product.asin}</p>
+                            </td>
+                          </tr>
+                          <tr className="folded-wo-wheels">
+                            <th>folded (w/o wheels) </th>
+                            <td>
+                              <p>{product.specificUses}</p>
+                            </td>
+                          </tr>
+                          <tr className="folded-wo-wheels">
+                            <th>folded (w/o wheels) </th>
+                            <td>
+                              <p>{product.itemHeight}</p>
+                            </td>
+                          </tr>
+                          <tr className="folded-wo-wheels">
+                            <th>folded (w/o wheels) </th>
+                            <td>
+                              <p>{product.itemWidth}</p>
                             </td>
                           </tr>
                         </tbody>
