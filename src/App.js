@@ -28,6 +28,7 @@ function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [productData, setProductData] = useState();
   const [categoryData, setCategoryData] = useState([])
+  const [activeCate, setActiveCat] = useState('');
 
   useEffect(() => {
     getCountry("http://localhost:4000/api/get");
@@ -81,7 +82,7 @@ function App() {
         {isHeaderFooterShow === true && <Header />}
         <Routes>
           <Route path="/" exact={true} element={<Home />} />
-          <Route path="/cat/:id" exact={true} element={<Listing />} />
+          <Route path="/get-category/:id" exact={true} element={<Listing />} />
           <Route
             path="/product/:id"
             exact={true}

@@ -35,7 +35,7 @@ const Navigation = (props) => {
                     props?.navData?.map((item, index) => {
                       return (
                         <li>
-                          <Link to="/cat/1">
+                          <Link to={`/get-category/${item?._id}`}>
                             <Button>{item?.name}</Button>
                           </Link>
                         </li>
@@ -57,7 +57,7 @@ const Navigation = (props) => {
                 props?.navData?.map((item, index) => {
                   return (
                     <li className="list-inline-item">
-                      <Link to="/cat/1">
+                      <Link to={`/get-category/${item?._id}`}>
                         <Button>{item?.name}</Button>
                       </Link>
                     </li>

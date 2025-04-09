@@ -40,9 +40,9 @@ const Home = () => {
     fetchDataFromApi("/api/v1/get-product?category=Fertilizer&perPage=8")
       .then((res) => {
         if (res?.success && Array.isArray(res.products)) {
-          setFertilizerProducts(res.products);  // ✅ Set only the products array
+          setFertilizerProducts(res.products);  
         } else {
-          setFertilizerProducts([]);  // ✅ Fallback in case of an error or empty data
+          setFertilizerProducts([]);  
         }
       })
       .catch((err) => {

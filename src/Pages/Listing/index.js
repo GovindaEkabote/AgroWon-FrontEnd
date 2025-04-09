@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "../../Components/Sidebar";
 import BannerImg from "../../assets/Banner1.jpg";
 import Button from "@mui/material/Button";
@@ -11,9 +11,13 @@ import MenuItem from "@mui/material/MenuItem";
 import ProductItem from "../../Components/ProductItem";
 import Pagination from '@mui/material/Pagination';
 
+import { useParams } from "react-router-dom";
+import { fetchDataFromApi } from "../../utils/api";
+
 const Listing = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [productView, setProductView] = useState("four");
+  const [products, setProducts] = useState([]);
 
   const openDropdown = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -23,6 +27,20 @@ const Listing = () => {
     setAnchorEl(null);
   };
 
+  const {id} = useParams()
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const res = await fetchDataFromApi(`/api/v1/products/category/${id}`);
+        setProducts(res.products); // assuming API returns { products: [...] }
+      } catch (err) {
+        console.error("Error fetching products:", err);
+      }
+    };
+  
+    getProducts();
+  }, [id]);
+  
   return (
     <>
       <section className="product_Listing_Page">
@@ -74,52 +92,16 @@ const Listing = () => {
                 </div>
               </div>
 
-              <div className="productListing prodeuct23">
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>   
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>   
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>   
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>
-                <ProductItem itemView={productView}/>   
-                <ProductItem itemView={productView}/>
-              </div>
+             <div className="productListing prodeuct23">
+  {products?.length > 0 ? (
+    products.map((item) => (
+      <ProductItem key={item._id} item={item} itemView={productView} />
+    ))
+  ) : (
+    <p>No products found in this category.</p>
+  )}
+</div>
+
 
               <div className="d-flex align-items-center justify-content-center mt-5">
                 <Pagination count={10} color="primary" size="large" />
