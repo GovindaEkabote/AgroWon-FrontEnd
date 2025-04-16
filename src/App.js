@@ -14,7 +14,7 @@ import SignIn from "./Pages/signIn";
 import SignUp from "./Pages/signUp";
 import Fertilizer from "./Pages/Fertilizer";
 import FeaturedProducts from "./Pages/FeaturedProducts";
-
+import AllProducts from './Pages/AllProducts'
 import Sidebar from "./Components/Sidebar";
 
 import { fetchDataFromApi } from "./utils/api";
@@ -98,6 +98,7 @@ function App() {
           <Route path="/slider" exact={true} element={<Sidebar />} />
           <Route path="/fertilizer" exact={true} element={<Fertilizer />} />
           <Route path="/feature" exact={true} element={<FeaturedProducts />} />
+          <Route path="/all-products" exact={true} element={<AllProducts />} />
         </Routes>
         {isHeaderFooterShow === true && <Footer />}
 

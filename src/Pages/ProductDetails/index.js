@@ -99,7 +99,7 @@ const ProductDetails = () => {
                   ) : product?.quantity?.length > 0 ? (
                     product.quantity.map((item, index) => (
                       <li className="list-inline-item" key={index}>
-                        <a
+                        <a href="#"
                           className={`tag ${
                             activeSize === index ? "active" : ""
                           }`}
@@ -183,61 +183,61 @@ const ProductDetails = () => {
                             </td>
                           </tr>
                           <tr className="folded-wo-wheels">
-                            <th>folded (w/o wheels) </th>
+                            <th>itemForm</th>
                             <td>
                               <p>{product.itemForm}</p>
                             </td>
                           </tr>
                           <tr className="folded-wo-wheels">
-                            <th>folded (w/o wheels) </th>
+                            <th>manufacturer</th>
                             <td>
                               <p>{product.manufacturer}</p>
                             </td>
                           </tr>
                           <tr className="folded-wo-wheels">
-                            <th>folded (w/o wheels) </th>
+                            <th>netQuantity </th>
                             <td>
                               <p>{product.netQuantity}</p>
                             </td>
                           </tr>
                           <tr className="folded-wo-wheels">
-                            <th>folded (w/o wheels) </th>
+                            <th>modelNumber</th>
                             <td>
                               <p>{product.modelNumber}</p>
                             </td>
                           </tr>
                           <tr className="folded-wo-wheels">
-                            <th>folded (w/o wheels) </th>
+                            <th>countryOfOrigin</th>
                             <td>
                               <p>{product.countryOfOrigin}</p>
                             </td>
                           </tr>
                           <tr className="folded-wo-wheels">
-                            <th>folded (w/o wheels) </th>
+                            <th>productDimensions</th>
                             <td>
                               <p>{product.productDimensions}</p>
                             </td>
                           </tr>
                           <tr className="folded-wo-wheels">
-                            <th>folded (w/o wheels) </th>
+                            <th>asin</th>
                             <td>
                               <p>{product.asin}</p>
                             </td>
                           </tr>
                           <tr className="folded-wo-wheels">
-                            <th>folded (w/o wheels) </th>
+                            <th>specificUses</th>
                             <td>
                               <p>{product.specificUses}</p>
                             </td>
                           </tr>
                           <tr className="folded-wo-wheels">
-                            <th>folded (w/o wheels) </th>
+                            <th>itemHeight </th>
                             <td>
                               <p>{product.itemHeight}</p>
                             </td>
                           </tr>
                           <tr className="folded-wo-wheels">
-                            <th>folded (w/o wheels) </th>
+                            <th>itemWidth </th>
                             <td>
                               <p>{product.itemWidth}</p>
                             </td>

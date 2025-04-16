@@ -118,9 +118,11 @@ const Home = () => {
                     New Products with updated stoks.
                   </p>
                 </div>
+                <Link to={'/all-products'}>
                 <Button className="viewAllBtn ml-auto text-black">
                   View All <FaAngleRight />
                 </Button>
+                </Link>
               </div>
 
               <div className="product_row productRow2 w-100 mt-4 d-flex">
