@@ -14,6 +14,7 @@ import HomeCat from "../../Components/HomeCat";
 import coupan from "../../assets/coupan.png";
 import { CiMail } from "react-icons/ci";
 import { fetchDataFromApi } from "../../utils/api";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [catData, setCatDate] = useState([]);
@@ -26,7 +27,7 @@ const Home = () => {
       setCatDate(res.categoryList);
     });
     fetchDataFromApi(`/api/v1/feature`).then((res) => {
-      setFeaturedProducts(res.products || []);
+      setFeaturedProducts(res);
     });
 
     fetchDataFromApi(
@@ -40,11 +41,10 @@ const Home = () => {
     fetchDataFromApi("/api/v1/get-product?category=Fertilizer&perPage=8")
       .then((res) => {
         if (res?.success && Array.isArray(res.products)) {
-          setFeaturedProducts(res.products);
+          setFertilizerProducts(res.products);  
         } else {
-          setFeaturedProducts([]);
+          setFertilizerProducts([]);  
         }
-        
       })
       .catch((err) => {
         console.error("Error fetching products:", err);
@@ -79,9 +79,11 @@ const Home = () => {
                     Do not miss the current offers until the end of April.
                   </p>
                 </div>
+                <Link to={'/fertilizer'}>
                 <Button className="viewAllBtn ml-auto text-black">
                   View All <FaAngleRight />
                 </Button>
+                </Link>
               </div>
 
               <div className="product_row w-100 mt-4">

@@ -16,8 +16,12 @@ import { fetchDataFromApi } from "../../utils/api";
 
 const Listing = () => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const [catData, setCatDate] = useState([]);
   const [productView, setProductView] = useState("four");
   const [products, setProducts] = useState([]);
+  const [fertilizerProducts, setFertilizerProducts] = useState([]);
+  const [featuredProducts, setFeaturedProducts] = useState([]);
+  const [productDate, setProductData] = useState([]);
 
   const openDropdown = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -28,18 +32,34 @@ const Listing = () => {
   };
 
   const { id } = useParams();
-  useEffect(() => {
-    const getProducts = async () => {
-      try {
-        const res = await fetchDataFromApi(`/api/v1/products/category/${id}`);
-        setProducts(res.products); // assuming API returns { products: [...] }
-      } catch (err) {
-        console.error("Error fetching products:", err);
-      }
-    };
 
-    getProducts();
-  }, [id]);
+  useEffect(() => {
+    fetchDataFromApi("/api/v1/get-category").then((res) => {
+      setCatDate(res.categoryList);
+    });
+    fetchDataFromApi(`/api/v1/feature`).then((res) => {
+      setFeaturedProducts(res);
+    });
+
+    fetchDataFromApi("/api/v1/get-product").then((res) => {
+      setProductData(res);
+    });
+  }, []);
+
+  useEffect(() => {
+    fetchDataFromApi("/api/v1/get-product?category=Fertilizer")
+      .then((res) => {
+        if (res?.success && Array.isArray(res.products)) {
+          setFertilizerProducts(res.products);
+        } else {
+          setFertilizerProducts([]);
+        }
+      })
+      .catch((err) => {
+        console.error("Error fetching products:", err);
+        setFertilizerProducts([]);
+      });
+  }, []);
 
   return (
     <>
@@ -101,10 +121,10 @@ const Listing = () => {
               </div>
 
               <div className="productListing prodeuct23">
-                {products?.length > 0 ? (
-                  products.map((item) => (
+                {featuredProducts?.length !== 0 ? (
+                  featuredProducts.map((item, index) => (
                     <ProductItem
-                      key={item._id}
+                      key={index}
                       item={item}
                       itemView={productView}
                     />

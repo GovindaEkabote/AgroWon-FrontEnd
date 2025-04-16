@@ -12,7 +12,10 @@ import ProductDetails from "./Pages/ProductDetails";
 import Cart from "./Pages/Cart";
 import SignIn from "./Pages/signIn";
 import SignUp from "./Pages/signUp";
+import Fertilizer from "./Pages/Fertilizer";
+
 import Sidebar from "./Components/Sidebar";
+
 import { fetchDataFromApi } from "./utils/api";
 
 const MyContext = createContext();
@@ -92,6 +95,7 @@ function App() {
           <Route path="/signIn" exact={true} element={<SignIn />} />
           <Route path="/signUp" exact={true} element={<SignUp />} />
           <Route path="/slider" exact={true} element={<Sidebar />} />
+          <Route path="/fertilizer" exact={true} element={<Fertilizer />} />
         </Routes>
         {isHeaderFooterShow === true && <Footer />}
 
