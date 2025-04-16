@@ -13,6 +13,7 @@ import Cart from "./Pages/Cart";
 import SignIn from "./Pages/signIn";
 import SignUp from "./Pages/signUp";
 import Fertilizer from "./Pages/Fertilizer";
+import FeaturedProducts from "./Pages/FeaturedProducts";
 
 import Sidebar from "./Components/Sidebar";
 
@@ -96,6 +97,7 @@ function App() {
           <Route path="/signUp" exact={true} element={<SignUp />} />
           <Route path="/slider" exact={true} element={<Sidebar />} />
           <Route path="/fertilizer" exact={true} element={<Fertilizer />} />
+          <Route path="/feature" exact={true} element={<FeaturedProducts />} />
         </Routes>
         {isHeaderFooterShow === true && <Footer />}
 

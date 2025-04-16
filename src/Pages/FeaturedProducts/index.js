@@ -121,8 +121,8 @@ const Listing = () => {
               </div>
 
               <div className="productListing prodeuct23">
-                {fertilizerProducts?.length !== 0 ? (
-                  fertilizerProducts.map((item, index) => (
+                {featuredProducts?.length !== 0 ? (
+                  featuredProducts.map((item, index) => (
                     <ProductItem
                       key={index}
                       item={item}

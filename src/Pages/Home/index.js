@@ -30,9 +30,7 @@ const Home = () => {
       setFeaturedProducts(res);
     });
 
-    fetchDataFromApi(
-      "/api/v1/get-product?perPage=8"
-    ).then((res) => {
+    fetchDataFromApi("/api/v1/get-product?perPage=8").then((res) => {
       setProductData(res);
     });
   }, []);
@@ -41,9 +39,9 @@ const Home = () => {
     fetchDataFromApi("/api/v1/get-product?category=Fertilizer&perPage=8")
       .then((res) => {
         if (res?.success && Array.isArray(res.products)) {
-          setFertilizerProducts(res.products);  
+          setFertilizerProducts(res.products);
         } else {
-          setFertilizerProducts([]);  
+          setFertilizerProducts([]);
         }
       })
       .catch((err) => {
@@ -79,7 +77,7 @@ const Home = () => {
                     Do not miss the current offers until the end of April.
                   </p>
                 </div>
-                <Link to={'/fertilizer'}>
+                <Link to={'/feature'}>
                 <Button className="viewAllBtn ml-auto text-black">
                   View All <FaAngleRight />
                 </Button>
@@ -140,9 +138,11 @@ const Home = () => {
                     Fertilizer Products with updated stoks.
                   </p>
                 </div>
-                <Button className="viewAllBtn ml-auto text-black">
-                  View All <FaAngleRight />
-                </Button>
+                <Link to={"/fertilizer"}>
+                  <Button className="viewAllBtn ml-auto text-black">
+                    View All <FaAngleRight />
+                  </Button>
+                </Link>
               </div>
 
               <div className="product_row productRow2 w-100 mt-4 d-flex">
