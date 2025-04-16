@@ -26,7 +26,7 @@ const Home = () => {
       setCatDate(res.categoryList);
     });
     fetchDataFromApi(`/api/v1/feature`).then((res) => {
-      setFeaturedProducts(res);
+      setFeaturedProducts(res.products || []);
     });
 
     fetchDataFromApi(
@@ -40,10 +40,11 @@ const Home = () => {
     fetchDataFromApi("/api/v1/get-product?category=Fertilizer&perPage=8")
       .then((res) => {
         if (res?.success && Array.isArray(res.products)) {
-          setFertilizerProducts(res.products);  
+          setFeaturedProducts(res.products);
         } else {
-          setFertilizerProducts([]);  
+          setFeaturedProducts([]);
         }
+        
       })
       .catch((err) => {
         console.error("Error fetching products:", err);
