@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 import BannerImg from "../../assets/Add2.png";
 const Sidebar = () => {
   const [value, setValue] = useState([100, 60000]);
-  const [value2, setValue2] = useState(0);
 
   return (
     <>

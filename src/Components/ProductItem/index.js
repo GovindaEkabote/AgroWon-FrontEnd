@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Button } from "@mui/material";
 import Rating from "@mui/material/Rating";
 import { AiOutlineFullscreen } from "react-icons/ai";
@@ -10,6 +10,7 @@ function ProductItem(props) {
   const context = useContext(MyContext);
   const [isHovered, setIsHovered] = useState(false);
   const sliderRef = useRef();
+  
   var settings = {
   dots: true,
   infinite: true,

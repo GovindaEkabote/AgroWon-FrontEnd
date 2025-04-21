@@ -27,15 +27,12 @@ const Listing = () => {
     setAnchorEl(null);
   };
 
-
-
   useEffect(() => {
-  
     fetchDataFromApi("/api/v1/get-product").then((res) => {
-      setProductData(res);
+      console.log(res.products);      
+      setProductData(res.products);
     });
   }, []);
-
 
   return (
     <>
@@ -97,17 +94,13 @@ const Listing = () => {
               </div>
 
               <div className="productListing prodeuct23">
-                {productDate?.products?.length !== 0 ? (
-                  productDate?.products?.map((item, index) => (
-                    <ProductItem
+                {productDate?.map((item,index) =>{
+                  return <ProductItem
                       key={index}
                       item={item}
                       itemView={productView}
                     />
-                  ))
-                ) : (
-                  <p>No products found in this category.</p>
-                )}
+                })}
               </div>
 
               <div className="d-flex align-items-center justify-content-center mt-5">

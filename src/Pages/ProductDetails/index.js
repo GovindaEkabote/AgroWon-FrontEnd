@@ -10,7 +10,7 @@ import Tooltip from "@mui/material/Tooltip";
 import userProfile from "../../assets/Add1.jpg";
 import { VscCodeReview } from "react-icons/vsc";
 import RelatedProducts from "./RelatedProducts";
-import { Link, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import { fetchDataFromApi } from "../../utils/api";
 
 const ProductDetails = () => {
@@ -99,7 +99,7 @@ const ProductDetails = () => {
                   ) : product?.quantity?.length > 0 ? (
                     product.quantity.map((item, index) => (
                       <li className="list-inline-item" key={index}>
-                        <a href="#"
+                        <a
                           className={`tag ${
                             activeSize === index ? "active" : ""
                           }`}

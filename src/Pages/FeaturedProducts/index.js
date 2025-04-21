@@ -10,18 +10,13 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ProductItem from "../../Components/ProductItem";
 import Pagination from "@mui/material/Pagination";
-
-import { useParams } from "react-router-dom";
 import { fetchDataFromApi } from "../../utils/api";
 
 const Listing = () => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [catData, setCatDate] = useState([]);
   const [productView, setProductView] = useState("four");
-  const [products, setProducts] = useState([]);
   const [fertilizerProducts, setFertilizerProducts] = useState([]);
   const [featuredProducts, setFeaturedProducts] = useState([]);
-  const [productDate, setProductData] = useState([]);
 
   const openDropdown = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -31,18 +26,10 @@ const Listing = () => {
     setAnchorEl(null);
   };
 
-  const { id } = useParams();
 
   useEffect(() => {
-    fetchDataFromApi("/api/v1/get-category").then((res) => {
-      setCatDate(res.categoryList);
-    });
     fetchDataFromApi(`/api/v1/feature`).then((res) => {
       setFeaturedProducts(res);
-    });
-
-    fetchDataFromApi("/api/v1/get-product").then((res) => {
-      setProductData(res);
     });
   }, []);
 
@@ -60,7 +47,6 @@ const Listing = () => {
         setFertilizerProducts([]);
       });
   }, []);
-
   return (
     <>
       <section className="product_Listing_Page">
