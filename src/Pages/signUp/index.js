@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MyContext } from "../../App";
 import Logo from "../../assets/Logo.png";
 import TextField from "@mui/material/TextField";
@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 
 const SignUp = () => {
+ 
+
   const context = useContext(MyContext);
   useEffect(() => {
     context.setisHeaderFooterShow(false);
