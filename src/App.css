@@ -433,8 +433,14 @@ nav .allCatTab .icon2 svg {
 
 nav .navPart2 ul {
   margin-bottom: 0px;
+  overflow-x: auto;
+  white-space: nowrap;
 }
-
+nav .navPart2 ul::-webkit-scrollbar{
+  width: 8px !important;
+  border-radius: 5px !important;
+  background: rgb(96, 223, 117);
+}
 nav .navPart2 ul li {
   padding-bottom: 20px;
 }
