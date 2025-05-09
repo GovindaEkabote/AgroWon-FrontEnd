@@ -4,11 +4,13 @@ import Logo from "../../assets/Logo.png";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
+import { IoEyeSharp } from "react-icons/io5";
+import { FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 
 const SignUp = () => {
- 
-
+  const [isShowPassword, setIsShowPassword] = useState(false);
+  const [isShowConfirmPassword, setIsShowConfirmPassword] = useState(false)
   const context = useContext(MyContext);
   useEffect(() => {
     context.setisHeaderFooterShow(false);
@@ -55,16 +57,48 @@ const SignUp = () => {
                   required
                 />
               </div>
-              <div className="form-group">
-                <TextField
-                  id="standard-basic"
-                  className="w-100"
-                  label="Password"
-                  variant="standard"
-                  type="password"
-                  required
-                />
+
+              <div className="row">
+                <div className="col-md-11">
+                  <div className="form-group">
+                    <TextField
+                      id="standard-basic"
+                      className="w-100"
+                      label="Password"
+                      variant="standard"
+                      type={`${isShowPassword === true ? "text" : "password"}`}
+                      required
+                    />
+                  </div>
+                </div>
+                <span
+                  className="mt-3 "
+                  onClick={() => setIsShowPassword(!isShowPassword)}
+                >
+                  {isShowPassword === true ? <IoEyeSharp /> : <FaEyeSlash />}
+                </span>
               </div>
+              <div className="row">
+                <div className="col-md-11">
+                  <div className="form-group">
+                    <TextField
+                      id="standard-basic"
+                      className="w-100"
+                      label="Password"
+                      variant="standard"
+                      type={`${isShowConfirmPassword === true ? "text" : "password"}`}
+                      required
+                    />
+                  </div>
+                </div>
+                <span
+                  className="mt-3"
+                  onClick={() => setIsShowConfirmPassword(!isShowConfirmPassword)}
+                >
+                  {isShowConfirmPassword === true ? <IoEyeSharp /> : <FaEyeSlash />}
+                </span>
+              </div>
+
               <div className="m-2 d-flex align-items-center row ">
                 <div className="row w-100">
                   <div className="col-md-6">
