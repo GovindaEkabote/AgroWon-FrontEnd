@@ -7,10 +7,60 @@ import { Link } from "react-router-dom";
 import { IoEyeSharp } from "react-icons/io5";
 import { FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
+import { postData } from "../../utils/api";
+import { useNavigate } from "react-router-dom";
+
 
 const SignUp = () => {
+  const navigate = useNavigate();
+
   const [isShowPassword, setIsShowPassword] = useState(false);
   const [isShowConfirmPassword, setIsShowConfirmPassword] = useState(false)
+   const [formfields, setFormfields] = useState({
+    name: "",
+    email: "",
+    phone:"",
+    password: "",
+    conformPassword: "",
+    isAdmin: false,
+  });
+
+  const onChangeInput = (e) => {
+      setFormfields(() => ({
+        ...formfields,
+        [e.target.name]: e.target.value,
+      }));
+    };
+    const signUp = (e) => {
+      e.preventDefault();
+      if (formfields.name === "") {
+        alert("Please Enter Name");
+      }
+      if (formfields.email === "") {
+        alert("Please Enter email");
+      }
+      if (formfields.password === "") {
+        alert("Please Enter password");
+      }
+      if (formfields.conformPassword === "") {
+        alert("Please Enter conformPassword");
+      }
+      if (formfields.conformPassword !== formfields.password) {
+        alert("Password Not Match");
+       
+      }
+      postData("/api/v1/signup", formfields)
+        .then((res) => {
+          alert("Registered Successfully!");
+          setTimeout(() => {
+            navigate("/signIn");
+          }, 500);
+        })
+        .catch((err) => {
+          alert("Something went wrong. Please try again.");
+        });
+    };
+  
   const context = useContext(MyContext);
   useEffect(() => {
     context.setisHeaderFooterShow(false);
@@ -23,16 +73,18 @@ const SignUp = () => {
             <div className="text-center">
               <img class="rounded mx-auto d-block " alt="logo" src={Logo} />
             </div>
-            <form>
+            <form onSubmit={signUp}>
               <h2 className="mb-2">Sign Up</h2>
               <div className="row">
                 <div className="col-md-6">
                   <div className="form-group">
                     <TextField
                       className="w-100"
-                      label="Name"
+                      label="Enter Your Name"
                       variant="standard"
                       type="text"
+                      name="name"
+                      onChange={onChangeInput}
                       required
                     />
                   </div>
@@ -43,6 +95,8 @@ const SignUp = () => {
                     label="Contact No."
                     variant="standard"
                     type="text"
+                    name="phone"
+                    onChange={onChangeInput}
                     required
                   />
                 </div>
@@ -54,6 +108,8 @@ const SignUp = () => {
                   label="Email"
                   variant="standard"
                   type="email"
+                  name="email"
+                  onChange={onChangeInput}
                   required
                 />
               </div>
@@ -66,6 +122,8 @@ const SignUp = () => {
                       className="w-100"
                       label="Password"
                       variant="standard"
+                      name="password"
+                      onChange={onChangeInput}
                       type={`${isShowPassword === true ? "text" : "password"}`}
                       required
                     />
@@ -86,6 +144,8 @@ const SignUp = () => {
                       className="w-100"
                       label="Password"
                       variant="standard"
+                      name="conformPassword"
+                      onChange={onChangeInput}
                       type={`${isShowConfirmPassword === true ? "text" : "password"}`}
                       required
                     />
@@ -102,7 +162,7 @@ const SignUp = () => {
               <div className="m-2 d-flex align-items-center row ">
                 <div className="row w-100">
                   <div className="col-md-6">
-                    <Button className="btn-blue w-100 bg-blue btn-big btn-lg ">
+                    <Button className="btn-blue w-100 bg-blue btn-big btn-lg"  type="submit">
                       Sign in
                     </Button>
                   </div>
