@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../assets/Logo.png";
 import CountryDropDown from "../CountryDropDown";
 import { Button } from "@mui/material";
@@ -7,10 +7,20 @@ import { IoCartSharp } from "react-icons/io5";
 import SearchBox from "./SearchBox";
 import Navigation from "./Navigation";
 import { MyContext } from "../../App";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 const Header = () => {
+  const history = useNavigate();
   const context = useContext(MyContext);
+
+  const logout =()=>{
+    localStorage.clear();
+    alert('Logout successfully')
+    setTimeout(() =>{
+      history('/signIn')
+    },1000)
+  }
+
   return (
     <>
       <div className="px-0 py-[4px] headerWrapper ">
@@ -45,8 +55,8 @@ const Header = () => {
                       </Button>
                     </Link>
                   ) : (
-                    <Button className="circle mr-3">
-                      <FaRegUser />
+                    <Button className="btn-blue bg-blue btn-lg mr-3 btn-round" onClick={logout}>
+                      LogOut
                     </Button>
                   )}
                   <div className="ml-auto cartTab d-flex align-item-center">
