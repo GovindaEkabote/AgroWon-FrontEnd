@@ -1,23 +1,21 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Logo from "../../assets/Logo.png";
 import CountryDropDown from "../CountryDropDown";
 import { Button } from "@mui/material";
-import { FaRegUser } from "react-icons/fa";
 import { IoCartSharp } from "react-icons/io5";
 import SearchBox from "./SearchBox";
 import Navigation from "./Navigation";
 import { MyContext } from "../../App";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 const Header = () => {
-  const history = useNavigate();
   const context = useContext(MyContext);
 
   const logout =()=>{
     localStorage.clear();
     alert('Logout successfully')
     setTimeout(() =>{
-      history('/signIn')
+      window.location.href='/signIn'
     },1000)
   }
 
