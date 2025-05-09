@@ -14,7 +14,7 @@ import SignIn from "./Pages/signIn";
 import SignUp from "./Pages/signUp";
 import Fertilizer from "./Pages/Fertilizer";
 import FeaturedProducts from "./Pages/FeaturedProducts";
-import AllProducts from './Pages/AllProducts'
+import AllProducts from "./Pages/AllProducts";
 import Sidebar from "./Components/Sidebar";
 
 import { fetchDataFromApi } from "./utils/api";
@@ -31,17 +31,32 @@ function App() {
   const [isHeaderFooterShow, setisHeaderFooterShow] = useState(true);
   const [isLogin, setIsLogin] = useState(false);
   const [productData, setProductData] = useState();
-  const [categoryData, setCategoryData] = useState([])
-  const [activeCate, setActiveCat] = useState('');
+  const [categoryData, setCategoryData] = useState([]);
+  const [activeCate, setActiveCat] = useState("");
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
+    userId: "",
+  });
 
   useEffect(() => {
     getCountry("http://localhost:4000/api/get");
 
-  
-    fetchDataFromApi("/api/v1/get-category").then((res) =>{
-      setCategoryData(res.categoryList)
-    })
+    fetchDataFromApi("/api/v1/get-category").then((res) => {
+      setCategoryData(res.categoryList);
+    });
   }, []);
+
+   useEffect(() =>{
+    const token = localStorage.getItem('token')
+    if(token !== null && token !== ''){
+      setIsLogin(true)
+      const userData =JSON.parse(localStorage.getItem('user'));
+      setUser(userData)
+    }else{
+      setIsLogin(false)
+    }
+  },[isLogin])
 
   useEffect(() => {
     if (isOpenProductModal.id) {
@@ -77,8 +92,10 @@ function App() {
     setisHeaderFooterShow,
     isLogin,
     setIsLogin,
-    categoryData, 
+    categoryData,
     setCategoryData,
+    user,
+    setUser,
   };
   return (
     <>
@@ -90,7 +107,7 @@ function App() {
           <Route
             path="/product/:id"
             exact={true}
-            element={<ProductDetails/>}
+            element={<ProductDetails />}
           />
           <Route path="/cart" exact={true} element={<Cart />} />
           <Route path="/signIn" exact={true} element={<SignIn />} />
