@@ -55,9 +55,8 @@ const  { addToCart } = useContext(MyContext);
   }
 
  const handleAddToCart  = (data) => {
-  console.log("Original product data:", data);
-  
-  const user = JSON.parse(localStorage.getItem("user"));
+  if(activeSize !== null){
+    const user = JSON.parse(localStorage.getItem("user"));
   
   const cartItem = {
     productTitle: product?.name || "Unknown Product",
@@ -70,6 +69,9 @@ const  { addToCart } = useContext(MyContext);
     userId: user?.userID || "unknown" 
   };
   addToCart(cartItem)
+  }  else{
+    alert("Please Select Size of Product")
+  }
 };
 
   return (
