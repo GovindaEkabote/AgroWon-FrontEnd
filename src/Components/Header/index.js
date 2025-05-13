@@ -60,9 +60,11 @@ const Header = () => {
                   <div className="ml-auto cartTab d-flex align-item-center">
                     <span className="price mt-2">₹ 3.25</span>
                     <div className="position-relative ml-2">
-                      <Button className="circle">
+                     <Link to={'/cart'}>
+                       <Button className="circle">
                         <IoCartSharp />
                       </Button>
+                     </Link>
                       <span className="count d-flex align-item-center justify-center">
                         1
                       </span>

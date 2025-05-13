@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import product from "../../assets/productModal2.jpg";
 import { Link } from "react-router-dom";
 import Rating from "@mui/material/Rating";
@@ -6,8 +6,35 @@ import QuantityBox from "../../Components/QuantityBox";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import Button from "@mui/material/Button";
 import { IoBagHandleSharp } from "react-icons/io5";
+import { fetchDataFromApi } from "../../utils/api";
+import { MyContext } from "../../App";
 
 const Cart = () => {
+  const [cartData, setCartData] = useState([]);
+  const [productQuentity, setProductQuentity] = useState();
+
+  const context = useContext(MyContext)
+
+  useEffect(() => {
+  fetchDataFromApi('/api/v1/cart').then((res) => {
+    if (res?.data) {
+      setCartData(res.data); // ✅ if your API directly returns the array
+    } else if (res?.data?.data) {
+      setCartData(res.data.data); // ✅ if response has { data: [...] }
+    } else {
+      setCartData([]); // fallback
+    }
+  }).catch((err) => {
+    console.error("Error fetching cart data:", err);
+    setCartData([]);
+  });
+}, []);
+
+
+ const quantity = (val) => {
+    setProductQuentity(val);
+  };
+
   return (
     <>
       <section className="section cartPage">
@@ -30,138 +57,45 @@ const Cart = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td width="35%">
-                        <Link to="/product/1">
-                          <div className="d-flex align-items-center cartItemimgWrapper">
-                            <div className="imgWrapper">
-                              <img src={product} alt="" className="w-100" />
-                            </div>
-                            <div className="info px-3">
-                              <h6>
-                                SJ Organics Vermicompost For Plants - 20 Kg
-                              </h6>
-                              <Rating
-                                name="read-only"
-                                value={4.5}
-                                readOnly
-                                precision={0.5}
-                                size="small"
-                              />
-                            </div>
-                          </div>
-                        </Link>
-                      </td>
-                      <td width="15%">$10.5</td>
-                      <td width="25%">
-                        <QuantityBox />
-                      </td>
-                      <td width="15%">$10.5</td>
-                      <td width="10%">
-                        <span className="remove">
-                          <IoIosCloseCircleOutline />
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td width="35%">
-                        <Link to="/product/1">
-                          <div className="d-flex align-items-center cartItemimgWrapper">
-                            <div className="imgWrapper">
-                              <img src={product} alt="" className="w-100" />
-                            </div>
-                            <div className="info px-3">
-                              <h6>
-                                SJ Organics Vermicompost For Plants - 20 Kg
-                              </h6>
-                              <Rating
-                                name="read-only"
-                                value={4.5}
-                                readOnly
-                                precision={0.5}
-                                size="small"
-                              />
-                            </div>
-                          </div>
-                        </Link>
-                      </td>
-                      <td width="15%">$10.5</td>
-                      <td width="25%">
-                        <QuantityBox />
-                      </td>
-                      <td width="15%">$10.5</td>
-                      <td width="10%">
-                        <span className="remove">
-                          <IoIosCloseCircleOutline />
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td width="35%">
-                        <Link to="/product/1">
-                          <div className="d-flex align-items-center cartItemimgWrapper">
-                            <div className="imgWrapper">
-                              <img src={product} alt="" className="w-100" />
-                            </div>
-                            <div className="info px-3">
-                              <h6>
-                                SJ Organics Vermicompost For Plants - 20 Kg
-                              </h6>
-                              <Rating
-                                name="read-only"
-                                value={4.5}
-                                readOnly
-                                precision={0.5}
-                                size="small"
-                              />
-                            </div>
-                          </div>
-                        </Link>
-                      </td>
-                      <td width="15%">$10.5</td>
-                      <td width="25%">
-                        <QuantityBox />
-                      </td>
-                      <td width="15%">$10.5</td>
-                      <td width="10%">
-                        <span className="remove">
-                          <IoIosCloseCircleOutline />
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td width="35%">
-                        <Link to="/product/1">
-                          <div className="d-flex align-items-center cartItemimgWrapper">
-                            <div className="imgWrapper">
-                              <img src={product} alt="" className="w-100" />
-                            </div>
-                            <div className="info px-3">
-                              <h6>
-                                SJ Organics Vermicompost For Plants - 20 Kg
-                              </h6>
-                              <Rating
-                                name="read-only"
-                                value={4.5}
-                                readOnly
-                                precision={0.5}
-                                size="small"
-                              />
-                            </div>
-                          </div>
-                        </Link>
-                      </td>
-                      <td width="15%">$10.5</td>
-                      <td width="25%">
-                        <QuantityBox />
-                      </td>
-                      <td width="15%">$10.5</td>
-                      <td width="10%">
-                        <span className="remove">
-                          <IoIosCloseCircleOutline />
-                        </span>
-                      </td>
-                    </tr>
+                 {
+  cartData?.length !== 0 &&
+    cartData?.map((item, index) => {
+      return (
+        <tr key={index}>
+          <td width="35%">
+            <Link to={`/product/${item.productId}`}>
+              <div className="d-flex align-items-center cartItemimgWrapper">
+                <div className="imgWrapper">
+                  <img src={item.image} alt={item.productTitle} className="w-100" />
+                </div>
+                <div className="info px-3">
+                  <h6>{item.productTitle}</h6>
+                  <Rating
+                    name="read-only"
+                    value={parseFloat(item.rating)}
+                    readOnly
+                    precision={0.5}
+                    size="small"
+                  />
+                </div>
+              </div>
+            </Link>
+          </td>
+          <td width="15%">${item.price}</td>
+          <td width="25%">
+            <QuantityBox quantity={quantity} />
+          </td>
+          <td width="15%">${item.subTotal}</td>
+          <td width="10%">
+            <span className="remove">
+              <IoIosCloseCircleOutline />
+            </span>
+          </td>
+        </tr>
+      );
+    })
+}
+
                   </tbody>
                 </table>
               </div>

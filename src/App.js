@@ -33,25 +33,11 @@ function App() {
   const [productData, setProductData] = useState();
   const [categoryData, setCategoryData] = useState([]);
   const [cartData, setCartData] = useState([]);
-  const [activeCate, setActiveCat] = useState("");
   const [user, setUser] = useState({
     name: "",
     email: "",
     userId: "",
   });
-
- const [cartFields, setCartFields] = useState({
-  productTitle: '',
-  image: '',
-  rating: 0,
-  price: 0,
-  quantity: 0,
-  subTotal: 0,
-  productId: '',
-  userId: '',
-});
-
-
   useEffect(() => {
     getCountry("http://localhost:4000/api/get");
 

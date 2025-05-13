@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useContext  } from "react";
+import { useState, useEffect, useContext } from "react";
 import ProductZoom from "../../Components/ProductZoom";
 import Rating from "@mui/material/Rating";
 import QuantityBox from "../../Components/QuantityBox";
@@ -10,7 +10,7 @@ import Tooltip from "@mui/material/Tooltip";
 import userProfile from "../../assets/Add1.jpg";
 import { VscCodeReview } from "react-icons/vsc";
 import RelatedProducts from "./RelatedProducts";
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { fetchDataFromApi } from "../../utils/api";
 import { MyContext } from "../../App";
 
@@ -20,12 +20,9 @@ const ProductDetails = () => {
   const [loading, setLoading] = useState(true);
   const [activeSize, setActiveSize] = useState(null);
   const [activeTabs, setActiveTabs] = useState(0);
-
-  const [cartFields, setCartFields] = useState({});
   const [productQuentity, setProductQuentity] = useState();
 
-const  { addToCart } = useContext(MyContext);
-
+  const { addToCart } = useContext(MyContext);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -48,31 +45,30 @@ const  { addToCart } = useContext(MyContext);
   const isActive = (index) => {
     setActiveSize(index);
   };
-  
 
-  const quantity =(val) =>{
-    setProductQuentity(val)
-  }
-
- const handleAddToCart  = (data) => {
-  if(activeSize !== null){
-    const user = JSON.parse(localStorage.getItem("user"));
-  
-  const cartItem = {
-    productTitle: product?.name || "Unknown Product",
-    image: product?.images?.[0]?.url || null, 
-    rating: product?.rating || 0,
-    price: product?.price || 0,
-    quantity: productQuentity, 
-    subTotal: parseInt(product?.price * productQuentity), 
-    productId: product?._id,
-    userId: user?.userID || "unknown" 
+  const quantity = (val) => {
+    setProductQuentity(val);
   };
-  addToCart(cartItem)
-  }  else{
-    alert("Please Select Size of Product")
-  }
-};
+
+  const handleAddToCart = (data) => {
+    if (activeSize !== null) {
+      const user = JSON.parse(localStorage.getItem("user"));
+
+      const cartItem = {
+        productTitle: product?.name || "Unknown Product",
+        image: product?.images?.[0]?.url || null,
+        rating: product?.rating || 0,
+        price: product?.price || 0,
+        quantity: productQuentity,
+        subTotal: parseInt(product?.price * productQuentity),
+        productId: product?._id,
+        userId: user?.userID || "unknown",
+      };
+      addToCart(cartItem);
+    } else {
+      alert("Please Select Size of Product");
+    }
+  };
 
   return (
     <>
@@ -148,8 +144,11 @@ const  { addToCart } = useContext(MyContext);
                 </ul>
               </div>
               <div className="d-flex align-items-center">
-                <QuantityBox  quantity={quantity}/>
-                <Button className="bg-blue btn-lg btn-big btn-round" onClick={() => handleAddToCart(product)}>
+                <QuantityBox quantity={quantity} />
+                <Button
+                  className="bg-blue btn-lg btn-big btn-round"
+                  onClick={() => handleAddToCart(product)}
+                >
                   <IoCartOutline />
                   &nbsp; Add to cart
                 </Button>
