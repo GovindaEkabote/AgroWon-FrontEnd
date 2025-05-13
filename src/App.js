@@ -17,7 +17,7 @@ import FeaturedProducts from "./Pages/FeaturedProducts";
 import AllProducts from "./Pages/AllProducts";
 import Sidebar from "./Components/Sidebar";
 
-import { fetchDataFromApi } from "./utils/api";
+import { fetchDataFromApi, postData } from "./utils/api";
 
 const MyContext = createContext();
 
@@ -32,12 +32,25 @@ function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [productData, setProductData] = useState();
   const [categoryData, setCategoryData] = useState([]);
+  const [cartData, setCartData] = useState([]);
   const [activeCate, setActiveCat] = useState("");
   const [user, setUser] = useState({
     name: "",
     email: "",
     userId: "",
   });
+
+ const [cartFields, setCartFields] = useState({
+  productTitle: '',
+  image: '',
+  rating: 0,
+  price: 0,
+  quantity: 0,
+  subTotal: 0,
+  productId: '',
+  userId: '',
+});
+
 
   useEffect(() => {
     getCountry("http://localhost:4000/api/get");
@@ -47,16 +60,16 @@ function App() {
     });
   }, []);
 
-   useEffect(() =>{
-    const token = localStorage.getItem('token')
-    if(token !== null && token !== ''){
-      setIsLogin(true)
-      const userData =JSON.parse(localStorage.getItem('user'));
-      setUser(userData)
-    }else{
-      setIsLogin(false)
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token !== null && token !== "") {
+      setIsLogin(true);
+      const userData = JSON.parse(localStorage.getItem("user"));
+      setUser(userData);
+    } else {
+      setIsLogin(false);
     }
-  },[isLogin])
+  }, [isLogin]);
 
   useEffect(() => {
     if (isOpenProductModal.id) {
@@ -82,6 +95,29 @@ function App() {
     }
   };
 
+const addToCart = (data) => {  
+  // Validate data before sending
+  if (!data || !data.productId) {
+    console.error("Invalid cart data");
+    return;
+  }
+
+  postData('/api/v1/cart/add', data)
+    .then((res) => {
+      if (res && res.success) {
+        alert("Item added to cart successfully");
+        // Optionally update cart data in state
+        setCartData(prev => [...prev, data]);
+      } else {
+        alert(res?.message || "Failed to add item to cart");
+      }
+    })
+    .catch(error => {
+      console.error("Error adding to cart:", error);
+      alert("Error adding item to cart");
+    });
+};
+
   const values = {
     stateList,
     setSelectedState,
@@ -96,6 +132,9 @@ function App() {
     setCategoryData,
     user,
     setUser,
+    addToCart,
+    cartData,
+    setCartData,
   };
   return (
     <>

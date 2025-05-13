@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext  } from "react";
 import ProductZoom from "../../Components/ProductZoom";
 import Rating from "@mui/material/Rating";
 import QuantityBox from "../../Components/QuantityBox";
@@ -12,6 +12,7 @@ import { VscCodeReview } from "react-icons/vsc";
 import RelatedProducts from "./RelatedProducts";
 import {  useParams } from "react-router-dom";
 import { fetchDataFromApi } from "../../utils/api";
+import { MyContext } from "../../App";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -19,6 +20,12 @@ const ProductDetails = () => {
   const [loading, setLoading] = useState(true);
   const [activeSize, setActiveSize] = useState(null);
   const [activeTabs, setActiveTabs] = useState(0);
+
+  const [cartFields, setCartFields] = useState({});
+  const [productQuentity, setProductQuentity] = useState();
+
+const  { addToCart } = useContext(MyContext);
+
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -41,6 +48,30 @@ const ProductDetails = () => {
   const isActive = (index) => {
     setActiveSize(index);
   };
+  
+
+  const quantity =(val) =>{
+    setProductQuentity(val)
+  }
+
+ const handleAddToCart  = (data) => {
+  console.log("Original product data:", data);
+  
+  const user = JSON.parse(localStorage.getItem("user"));
+  
+  const cartItem = {
+    productTitle: product?.name || "Unknown Product",
+    image: product?.images?.[0]?.url || null, 
+    rating: product?.rating || 0,
+    price: product?.price || 0,
+    quantity: productQuentity, 
+    subTotal: parseInt(product?.price * productQuentity), 
+    productId: product?._id,
+    userId: user?.userID || "unknown" 
+  };
+  addToCart(cartItem)
+};
+
   return (
     <>
       <section className="productDetails section mb-5">
@@ -115,8 +146,8 @@ const ProductDetails = () => {
                 </ul>
               </div>
               <div className="d-flex align-items-center">
-                <QuantityBox />
-                <Button className="bg-blue btn-lg btn-big btn-round">
+                <QuantityBox  quantity={quantity}/>
+                <Button className="bg-blue btn-lg btn-big btn-round" onClick={() => handleAddToCart(product)}>
                   <IoCartOutline />
                   &nbsp; Add to cart
                 </Button>
